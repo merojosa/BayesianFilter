@@ -14,10 +14,17 @@ public class Visualizer {
     {
         System.out.println("Seleccione una opcion\n[1]Configurar\n[2]Entrenar\n[3]Mostrar datos\n[4]Obetener correo nuevo\n[5]Cerrar sesion\n[6]Salir\n[7]Prueba");
     }
+
+    public void showConfigurationMenu()
+    {
+        System.out.println("Seleccione una opcion\n[1]Cambiar probabilidad de 'SPAM'\n[2]Cambiar 'SPAM Threshold'\n[3]Cambiar el tamanio del conjunto de entrenamiento'\n[4]Regresar");
+    }
+
     public String readConsoleString()
     {
-        return scanner.next();
+        return scanner.next().toLowerCase();
     }
+
     public Float readConsoleFloat()
     {
         float returnValue = 0;
