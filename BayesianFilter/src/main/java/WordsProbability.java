@@ -27,7 +27,8 @@ public class WordsProbability  implements Serializable {
 
     private float notSpamProbability;
 
-    public WordsProbability(String word, int totalSpam, int totalSpamEmails, float spamProbability, float notSpamProbability) {
+    public WordsProbability(String word, int totalSpam, int totalSpamEmails, float spamProbability, float notSpamProbability)
+    {
         this.word = word;
         this.totalSpam = totalSpam;
         this.totalSpamEmails = totalSpamEmails;
@@ -35,7 +36,8 @@ public class WordsProbability  implements Serializable {
         this.notSpamProbability = notSpamProbability;
     }
 
-    public WordsProbability() {
+    public WordsProbability()
+    {
     }
 
     public int getTotalSpam() {
