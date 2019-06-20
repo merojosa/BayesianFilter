@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Map;
 
 public class SpamFilter
@@ -7,4 +8,19 @@ public class SpamFilter
     private int emailAmount;
     private Map<String, WordsProbability> wordsProbabilities;
     private FileManager fileManager;
+
+    public boolean determineEmail(Email email)
+    {
+        return true;
+    }
+
+    public void train(List<Email> notSpam, List<Email> spam)
+    {
+
+    }
+
+    public void changeConfiguration()
+    {
+
+    }
 }
