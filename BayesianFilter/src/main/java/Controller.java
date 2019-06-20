@@ -18,13 +18,11 @@ public class Controller
                         visualizer.showMainMenu();
                         while(true)
                         {
-                            switch (visualizer.readConsoleString())
-                            {
-                                case"1":
-                                case"configurar":
+                            switch (visualizer.readConsoleString()) {
+                                case "1":
+                                case "configurar":
                                     visualizer.showConfigurationMenu();
-                                    while (!goBack)
-                                    {
+                                    while (!goBack) {
                                         switch (visualizer.readConsoleString()) {
                                             case "1":
                                                 break;
@@ -33,23 +31,32 @@ public class Controller
                                             case "3":
                                                 break;
                                             case "4":
-                                            case"regresar":
+                                            case "regresar":
                                                 visualizer.showMainMenu();
-                                                goBack=true;
+                                                goBack = true;
                                                 break;
                                         }
                                     }
                                     break;
                                 case "5":
-                                    //Ingresar aqui el codigo para limpiar datos o cerrar sesion
+                                    visualizer.showMessage("opcion 5 ejecutada");
+                                    Authenticator authenticator = new Authenticator();
+                                    try {
+                                        authenticator.closeSesion();
+                                    }
+                                    catch(Exception e)
+                                    {
+                                        visualizer.showMessage("Hubo un problema al cerrar sesión.");
+                                    }
                                     main(null);
                                     System.exit(0);
                                     break;
-                                case"7":
+                                case "7":
                                     visualizer.readConsoleFloat();
                                     break;
                                 case "6":
                                 case "salir":
+
                                     System.exit(0);
                             }
                         }

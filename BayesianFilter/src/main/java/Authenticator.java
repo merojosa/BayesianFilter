@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.List;
+import java.lang.Runtime;
 
 public class Authenticator
 {
@@ -26,15 +27,9 @@ public class Authenticator
     private final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_READONLY);
     private Gmail service;
 
-
     public boolean logIn()
     {
         return true;
-    }
-
-    public void closeSession()
-    {
-
     }
 
     private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException
@@ -54,6 +49,15 @@ public class Authenticator
                 .build();
         LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
+    }
+
+    public void closeSesion()
+    {
+        try {
+            Runtime.getRuntime().exec("mkdir prueba");
+        }
+        catch(Exception e)
+        {}
     }
 
 }
