@@ -16,7 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.List;
-import java.lang.Runtime;
+import java.io.File;
 
 public class Authenticator
 {
@@ -53,11 +53,10 @@ public class Authenticator
 
     public void closeSesion()
     {
-        try {
-            Runtime.getRuntime().exec("mkdir prueba");
-        }
-        catch(Exception e)
-        {}
+        File file = new File("resources/credentials.json");
+        if(file.delete()){
+            System.out.println("Sesion cerrada exitosamente");
+        }else System.out.println("No se pudo cerrar la sesion");
     }
 
 }
