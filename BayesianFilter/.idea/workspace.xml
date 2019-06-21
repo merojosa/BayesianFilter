@@ -1,18 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6da3800d-0c57-4ac4-81ad-f83b77696d39" name="Default Changelist" comment="">
+    <list default="true" id="654dc8cf-a22a-4ff3-adf0-44397b536c5c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_api_client_google_api_client_1_23_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_apis_google_api_services_gmail_v1_rev83_1_23_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_1_3_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_jdk5_17_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_http_client_google_http_client_1_23_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_http_client_google_http_client_jackson2_1_23_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_oauth_client_google_oauth_client_1_23_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_oauth_client_google_oauth_client_java6_1_23_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_oauth_client_google_oauth_client_jetty_1_23_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_commons_logging_1_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jsoup_jsoup_1_10_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mortbay_jetty_jetty_6_1_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mortbay_jetty_jetty_util_6_1_26.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mortbay_jetty_servlet_api_2_5_20081211.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/TP1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/TP1.main.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/TP1.test.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/CHANGES" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/Connection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/HttpStatusException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/Jsoup.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/SerializationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/UnsupportedMimeTypeException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/examples/HtmlToPlainText.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/examples/ListLinks.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/examples/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/helper/DataUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/helper/DescendableLinkedList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/helper/HttpConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/helper/StringUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/helper/Validate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/helper/W3CDom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/Attribute.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/Attributes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/BooleanAttribute.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/Comment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/DataNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/Document.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/DocumentType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/Element.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/Entities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/FormElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/TextNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/XmlDeclaration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/entities-base.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/entities-full.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/entities-xhtml.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/nodes/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/CharacterReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/HtmlTreeBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/HtmlTreeBuilderState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/ParseError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/ParseErrorList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/ParseSettings.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/Parser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/Tag.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/Token.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/TokenQueue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/Tokeniser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/TokeniserState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/TreeBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/XmlTreeBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/parser/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/safety/Cleaner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/safety/Whitelist.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/safety/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/select/Collector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/select/CombiningEvaluator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/select/Elements.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/select/Evaluator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/select/NodeTraversor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/select/NodeVisitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/select/QueryParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/select/Selector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/select/StructuralEvaluator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/java/org/jsoup/select/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/main/javadoc/overview.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/TextUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/helper/DataUtilTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/helper/HttpConnectionTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/helper/StringUtilTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/helper/W3CDomTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/integration/Benchmark.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/integration/ParseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/integration/UrlConnectTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/nodes/AttributeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/nodes/AttributesTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/nodes/BuildEntities.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/nodes/DocumentTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/nodes/DocumentTypeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/nodes/ElementTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/nodes/EntitiesTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/nodes/FormElementTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/nodes/NodeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/nodes/TextNodeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/parser/AttributeParseTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/parser/CharacterReaderTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/parser/HtmlParserTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/parser/ParserSettingsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/parser/TagTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/parser/TokenQueueTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/parser/XmlTreeBuilderTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/safety/CleanerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/select/CssTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/select/ElementsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/select/QueryParserTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/java/org/jsoup/select/SelectorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/bomtests/bom_utf16be.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/bomtests/bom_utf16le.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/bomtests/bom_utf32be.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/bomtests/bom_utf32le.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/baidu-cn-home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/baidu-variant.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/google-ipod.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/meta-charset-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/meta-charset-2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/meta-charset-3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/namespaces.xhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/news-com-au-home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/nyt-article-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/smh-biz-article-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/table-invalid-elements.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/thumb.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/xml-charset.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/xml-test.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/yahoo-article-1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jsoup-jsoup-1.10.1/src/test/resources/htmltests/yahoo-jp.html" beforeDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/.gradle/" />
-    <ignored path="$PROJECT_DIR$/build/" />
-    <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/classes/" />
+    <ignored path="$PROJECT_DIR$/.gradle/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -21,63 +170,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Authenticator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#472#473#0" expanded="true" />
-                <element signature="e#498#499#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/GmailQuickstart.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="191" column="36" selection-start-line="191" selection-start-column="36" selection-end-line="191" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SpamFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#297#298#0" expanded="true" />
-                <element signature="e#324#325#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="126">
+              <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -85,17 +187,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/Email.java" />
-        <option value="$PROJECT_DIR$/src/main/java/EmailLoader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/HtmlParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/SpamFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/FileManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Controller.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="1034" />
+    <option name="x" value="-9" />
+    <option name="width" value="1035" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -104,6 +202,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -133,13 +232,16 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561060549445" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/build.gradle" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -172,146 +274,62 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6da3800d-0c57-4ac4-81ad-f83b77696d39" name="Default Changelist" comment="" />
-      <created>1561059301258</created>
+      <changelist id="654dc8cf-a22a-4ff3-adf0-44397b536c5c" name="Default Changelist" comment="" />
+      <created>1561090036750</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1561059301258</updated>
+      <updated>1561090036750</updated>
+      <workItem from="1561090040508" duration="251000" />
     </task>
-    <task id="LOCAL-00001" summary="Métodos declarados para las clases FileManager y SpamFilter.">
-      <created>1561063895764</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1561063895764</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="251000" />
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.123667374" />
+      <window_info id="Designer" />
+      <window_info id="Image Layers" />
+      <window_info id="Capture Tool" />
+      <window_info id="UI Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24939272" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Build" sideWeight="0.49959514" weight="0.3285968" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" sideWeight="0.50040483" side_tool="true" weight="0.3285968" />
+      <window_info anchor="bottom" id="Messages" sideWeight="0.49959514" weight="0.3285968" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49959514" weight="0.3285968" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Build" order="10" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32936078" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Gradle" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Theme Preview" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" />
-      <window_info anchor="right" id="Gradle" order="5" />
-      <window_info anchor="right" id="Theme Preview" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
     </layout>
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Clases creadas." />
-    <MESSAGE value="Métodos declarados para las clases FileManager y SpamFilter." />
-    <option name="LAST_COMMIT_MESSAGE" value="Métodos declarados para las clases FileManager y SpamFilter." />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Email.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/GmailQuickstart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="191" column="36" selection-start-line="191" selection-start-column="36" selection-end-line="191" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/EmailLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/HtmlParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#82#83#0" expanded="true" />
-            <element signature="e#105#106#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Authenticator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#472#473#0" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#106#107#0" expanded="true" />
-            <element signature="e#132#133#0" expanded="true" />
-            <element signature="e#230#231#0" expanded="true" />
-            <element signature="e#251#252#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/WordsProbability.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SpamFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#297#298#0" expanded="true" />
-            <element signature="e#324#325#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="126">
+          <caret line="9" column="19" lean-forward="true" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
         </state>
       </provider>
     </entry>
