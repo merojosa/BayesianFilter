@@ -1,20 +1,33 @@
+import java.io.IOException;
 import java.lang.System;
+import java.security.GeneralSecurityException;
 
 public class Controller
 {
-    public static void main(String[] args)
+    private Authenticator authenticator;
+    private Visualizer visualizer;
+
+    public Controller()
     {
-        Visualizer visualizer = new Visualizer();
+        authenticator = new Authenticator();
+        visualizer = new Visualizer();
+    }
+
+    public void start() throws IOException, GeneralSecurityException
+    {
         visualizer.showStartApp();
         boolean goBack = false;
         while(true)
         {
-            switch (visualizer.readConsoleString()) {
+            switch (visualizer.readConsoleString())
+            {
                 case "2":
                 case "salir":
                     System.exit(0);
                 case"1":
                 case"autenticarse":
+                    if(authenticator.logIn() == true)
+                    {
                         visualizer.showMainMenu();
                         while(true)
                         {
@@ -41,8 +54,8 @@ public class Controller
                                     }
                                     break;
                                 case "5":
-                                    //Ingresar aqui el codigo para limpiar datos o cerrar sesion
-                                    main(null);
+                                    authenticator.closeSession();
+                                    start();
                                     System.exit(0);
                                     break;
                                 case"7":
@@ -53,6 +66,7 @@ public class Controller
                                     System.exit(0);
                             }
                         }
+                    }
             }
         }
     }
