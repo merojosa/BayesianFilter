@@ -26,9 +26,9 @@ public class Controller
                     System.exit(0);
                 case"1":
                 case"autenticarse":
-                    visualizer.showMainMenu();
                     if(authenticator.logIn() == true)
                     {
+                        visualizer.showMainMenu();
                         while(true)
                         {
                             switch (visualizer.readConsoleString())
