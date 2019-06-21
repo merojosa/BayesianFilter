@@ -53,10 +53,10 @@ public class Authenticator
 
     public void closeSesion()
     {
+        //Codigo usado como base:
+        //https://www.journaldev.com/830/java-delete-file-directory#java-delete-file-example
         File file = new File("resources/credentials.json");
-        if(file.delete()){
-            System.out.println("Sesion cerrada exitosamente");
-        }else System.out.println("No se pudo cerrar la sesion");
+        file.delete();
     }
 
 }

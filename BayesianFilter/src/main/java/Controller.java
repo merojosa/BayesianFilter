@@ -43,10 +43,11 @@ public class Controller
                                     Authenticator authenticator = new Authenticator();
                                     try {
                                         authenticator.closeSesion();
+                                        visualizer.showMessage("Se cerro la sesion exitosamente");
                                     }
                                     catch(Exception e)
                                     {
-                                        visualizer.showMessage("Hubo un problema al cerrar sesión.");
+                                        visualizer.showMessage("Hubo un problema al cerrar sesion.");
                                     }
                                     main(null);
                                     System.exit(0);
