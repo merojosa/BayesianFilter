@@ -54,7 +54,7 @@ public class Controller
                                     }
                                     break;
                                 case "5":
-                                    //Ingresar aqui el codigo para limpiar datos o cerrar sesion
+                                    authenticator.closeSession();
                                     start();
                                     System.exit(0);
                                     break;

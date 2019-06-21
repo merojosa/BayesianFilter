@@ -11,11 +11,8 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.GmailScopes;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.security.GeneralSecurityException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,7 +48,11 @@ public class Authenticator
 
     public void closeSession()
     {
+        // Delete token
+        File file = new File(TOKENS_DIRECTORY_PATH + "/StoredCredential");
+        file.delete();
 
+        // Delete training data
     }
 
     private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException
