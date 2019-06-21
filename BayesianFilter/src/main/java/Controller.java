@@ -54,14 +54,14 @@ public class Controller
                                 case "5":
                                     Authenticator authenticator = new Authenticator();
                                     try {
-                                        authenticator.closeSesion();
+                                        authenticator.closeSession();
                                         visualizer.showMessage("Se cerro la sesion exitosamente");
                                     }
                                     catch(Exception e)
                                     {
                                         visualizer.showMessage("Hubo un problema al cerrar sesion.");
                                     }
-                                    main(null);
+                                    Main.main(null);
                                     start();
                                     System.exit(0);
                                     break;
