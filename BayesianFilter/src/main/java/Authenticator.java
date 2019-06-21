@@ -15,6 +15,7 @@ import java.io.*;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
+import java.io.File;
 
 import static java.util.logging.Level.*;
 
@@ -26,8 +27,6 @@ public class Authenticator
     private final String CREDENTIALS_FILE_PATH = "/credentials.json";
     private final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_READONLY);
     private Gmail service;
-
-
 
     public boolean logIn() throws IOException, GeneralSecurityException
     {
@@ -73,5 +72,4 @@ public class Authenticator
         LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
-
 }

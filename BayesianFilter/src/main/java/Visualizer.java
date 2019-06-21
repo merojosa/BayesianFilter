@@ -12,7 +12,7 @@ public class Visualizer {
     }
     public void showMainMenu()
     {
-        System.out.println("Seleccione una opcion\n[1]Configurar\n[2]Entrenar\n[3]Mostrar datos\n[4]Obetener correo nuevo\n[5]Cerrar sesion\n[6]Salir\n[7]Prueba");
+        System.out.println("Seleccione una opcion\n[1]Configurar\n[2]Entrenar\n[3]Mostrar datos\n[4]Obtener correo nuevo\n[5]Cerrar sesion\n[6]Salir\n[7]Prueba");
     }
 
     public void showConfigurationMenu()
@@ -32,8 +32,13 @@ public class Visualizer {
             returnValue = Float.valueOf(scanner.next());
         }
         catch(NumberFormatException e) {
-        System.out.println("Ingrese un numero decimal");
-    }
+            System.out.println("Ingrese un numero decimal");
+        }
         return returnValue;
+    }
+
+    public void showMessage(String message)
+    {
+        System.out.println(message);
     }
 }
