@@ -1,39 +1,52 @@
 public class Email {
-    
-    private String header;
-    private String body;
-    private String footer;
-    private String snippet;
 
-    public Email() {
+    private String snippet;
+    private String from;
+    private String body;
+    private String subject;
+
+    public Email(String snippet, String from, String body, String subject)
+    {
+        this.snippet = snippet;
+        this.from = from;
+        this.body = body;
+        this.subject = subject;
     }
 
-    public String getHeader() {
-        return header;
+    public  Email()
+    {
+        snippet = "";
+        from = "";
+        body = "";
+        subject = "";
+    }
+
+    public String getFrom() {
+        return from;
     }
 
     public String getBody() {
         return body;
     }
 
-    public String getFooter() {
-        return footer;
+    public String getSubject() {
+        return subject;
     }
 
     public String getSnippet() {
         return snippet;
     }
 
-    public void setHeader(String header) {
-        this.header = header;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
     public void setBody(String body) {
         this.body = body;
     }
 
-    public void setFooter(String footer) {
-        this.footer = footer;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     public void setSnippet(String snippet) {

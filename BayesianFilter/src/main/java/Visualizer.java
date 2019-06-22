@@ -12,7 +12,7 @@ public class Visualizer {
     }
     public void showMainMenu()
     {
-        System.out.println("Seleccione una opcion\n[1]Configurar\n[2]Entrenar\n[3]Mostrar datos\n[4]Obtener correo nuevo\n[5]Cerrar sesion\n[6]Salir\n[7]Prueba");
+        System.out.println("Seleccione una opción\n[1]Configurar\n[2]Entrenar\n[3]Mostrar datos\n[4]Obtener correos nuevo\n[5]Cerrar sesion\n[6]Salir");
     }
 
     public void showConfigurationMenu()
@@ -23,6 +23,11 @@ public class Visualizer {
     public void showConfiguration(float spamProbability, float spamThreshold, int emailAmount)
     {
         System.out.println("Probabilidad de spam: "+spamProbability+"\nLimite de spam: "+spamThreshold+"\nMinimo de cantidad de correos: "+emailAmount);
+    }
+
+    public void showEmail(String information)
+    {
+        System.out.println(information);
     }
 
     public String readConsoleString()
