@@ -7,12 +7,14 @@ public class Controller
     private Authenticator authenticator;
     private Visualizer visualizer;
     private EmailLoader emailLoader;
+    private SpamFilter spamFilter;
 
     public Controller()
     {
         authenticator = new Authenticator();
         visualizer = new Visualizer();
         emailLoader = new EmailLoader();
+        spamFilter = new SpamFilter();
     }
 
     public void start() throws IOException, GeneralSecurityException

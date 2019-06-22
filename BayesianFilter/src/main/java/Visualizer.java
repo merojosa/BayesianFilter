@@ -17,7 +17,12 @@ public class Visualizer {
 
     public void showConfigurationMenu()
     {
-        System.out.println("Seleccione una opcion\n[1]Cambiar probabilidad de 'SPAM'\n[2]Cambiar 'SPAM Threshold'\n[3]Cambiar el tamanio del conjunto de entrenamiento'\n[4]Regresar");
+        System.out.println("Seleccione una opcion\n[1]Cambiar probabilidad de 'SPAM'\n[2]Cambiar 'SPAM Threshold'\n[3]Cambiar el tamanio del conjunto de entrenamiento\n[4]Mostrar configuracion\n[5]Regresar");
+    }
+
+    public void showConfiguration(float spamProbability, float spamThreshold, int emailAmount)
+    {
+        System.out.println("Probabilidad de spam: "+spamProbability+"\nLimite de spam: "+spamThreshold+"\nMinimo de cantidad de correos: "+emailAmount);
     }
 
     public void showEmail(String information)
@@ -37,12 +42,24 @@ public class Visualizer {
             returnValue = Float.valueOf(scanner.next());
         }
         catch(NumberFormatException e) {
-        System.out.println("Ingrese un numero decimal");
-    }
+            System.out.println("No se pudo realizar la oprecion porque el valor es invalido");
+        }
         return returnValue;
     }
 
-    public void printMessage(String message)
+    public int readConsonleInt()
+    {
+        int returnValue = 0;
+        try {
+            returnValue = Integer.valueOf(scanner.next());
+        }
+        catch(NumberFormatException e) {
+            System.out.println("No se pudo realizar la oprecion porque el valor es invalido");
+        }
+        return returnValue;
+    }
+
+    public void showMessage(String message)
     {
         System.out.println(message);
     }
