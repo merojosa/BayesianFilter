@@ -1,9 +1,7 @@
 import java.io.Serializable;
 
-public class WordsProbability  implements Serializable {
-
-
-
+public class WordsProbability  implements Serializable
+{
     //quitar para proyecto
     private int wordAmount =1;
 
@@ -21,17 +19,17 @@ public class WordsProbability  implements Serializable {
 
     private int totalSpam;
 
-    private int totalSpamEmails;
+    private int totalEmails;
 
-    private float spamProbability;
+    private double spamProbability;
 
-    private float notSpamProbability;
+    private double notSpamProbability;
 
-    public WordsProbability(String word, int totalSpam, int totalSpamEmails, float spamProbability, float notSpamProbability)
+    public WordsProbability(String word, int totalSpam, int totalEmails, double spamProbability, double notSpamProbability)
     {
         this.word = word;
         this.totalSpam = totalSpam;
-        this.totalSpamEmails = totalSpamEmails;
+        this.totalEmails = totalEmails;
         this.spamProbability = spamProbability;
         this.notSpamProbability = notSpamProbability;
     }
@@ -48,15 +46,15 @@ public class WordsProbability  implements Serializable {
         this.totalSpam = totalSpam;
     }
 
-    public int getTotalSpamEmails() {
-        return totalSpamEmails;
+    public int getTotalEmails() {
+        return totalEmails;
     }
 
-    public void setTotalSpamEmails(int totalSpamEmails) {
-        this.totalSpamEmails = totalSpamEmails;
+    public void setTotalEmails(int totalEmails) {
+        this.totalEmails = totalEmails;
     }
 
-    public float getSpamProbability() {
+    public double getSpamProbability() {
         return spamProbability;
     }
 
@@ -64,7 +62,7 @@ public class WordsProbability  implements Serializable {
         this.spamProbability = spamProbability;
     }
 
-    public float getNotSpamProbability() {
+    public double getNotSpamProbability() {
         return notSpamProbability;
     }
 
