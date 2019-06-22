@@ -16,6 +16,7 @@ public class SpamFilter
         emailAmount = 50;
     }
 
+    // True if is spam.
     public boolean determineEmail(Email email)
     {
         return true;

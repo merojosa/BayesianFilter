@@ -1,6 +1,9 @@
+import java.util.Map;
 import java.util.Scanner;
-public class Visualizer {
+public class Visualizer
+{
     private Scanner scanner;
+    private final int SIZE_WORD = 16;
 
     public Visualizer() {
         scanner = new Scanner(System.in);
@@ -25,9 +28,43 @@ public class Visualizer {
         System.out.println("Probabilidad de spam: "+spamProbability+"\nLimite de spam: "+spamThreshold+"\nMinimo de cantidad de correos: "+emailAmount);
     }
 
-    public void showEmail(String information)
+    public void showTrainingData(Map<String, WordsProbability> wordsProbabilities)
     {
-        System.out.println(information);
+        if(wordsProbabilities.size() > 0)
+        {
+            System.out.println("\n----------------------------------------------------------------------------------");
+            System.out.printf("| %-" + SIZE_WORD + "s| %-15s | %-13s | %-10s | %-13s |", "Palabra", "Correos totales", "Cantidad spam", "Prob. spam", "Prob. no spam");
+            String word = "";
+            for (Map.Entry<String, WordsProbability> mapWord : wordsProbabilities.entrySet())
+            {
+                System.out.println("\n----------------------------------------------------------------------------------");
+
+                // If the lenght word is bigger than SIZE_WORD, cut it.
+                if(mapWord.getKey().length() > SIZE_WORD)
+                {
+                    word = mapWord.getKey().substring(0, SIZE_WORD - 1);
+                }
+                else
+                {
+                    word = mapWord.getKey();
+                }
+
+                System.out.printf("| %-" + SIZE_WORD + "s| %-15s | %-13s | %-10s | %-13s |",
+                        word,
+                        mapWord.getValue().getTotalEmails(),
+                        mapWord.getValue().getTotalSpam(),
+                        mapWord.getValue().getSpamProbability(),
+                        mapWord.getValue().getNotSpamProbability());
+
+            }
+            System.out.println("\n----------------------------------------------------------------------------------");
+            System.out.println("Total de palabras: " + wordsProbabilities.size());
+        }
+        else
+        {
+            System.out.printf("No hay correos nuevos.");
+        }
+
     }
 
     public String readConsoleString()

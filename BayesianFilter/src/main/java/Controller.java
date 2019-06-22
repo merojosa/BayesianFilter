@@ -1,6 +1,8 @@
 import java.io.IOException;
 import java.lang.System;
 import java.security.GeneralSecurityException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Controller
 {
@@ -21,6 +23,7 @@ public class Controller
     {
         visualizer.showStartApp();
         boolean goBack = false;
+        String messageSpam = "";
         while(true)
         {
             switch (visualizer.readConsoleString())
@@ -97,29 +100,42 @@ public class Controller
                                 }
                                 break;
                             }
-                            // Training
+                            // Train
                             case "2":
                             {
-
-
                                 break;
                             }
                             // Show training data.
                             case "3":
                             {
+                                // ESTO ES UNA PRUEBA, HAY QUE USAR EL MAP DE SPAMFILTER.
+                                Map<String, WordsProbability> wordsProbabilityMap = new HashMap<String, WordsProbability>();
+                                wordsProbabilityMap.put("Palabra1", new WordsProbability("Palabra1", 2, 3, 0.1, 0.9));
+                                wordsProbabilityMap.put("Palabra2", new WordsProbability("Palabra2", 21, 4, 0.4, 0.6));
+
+                                visualizer.showTrainingData(wordsProbabilityMap);
+                                visualizer.showMessage("\n");
                                 break;
                             }
                             // Get unread messages.
                             case "4":
                             {
-                                visualizer.showEmail("Cargando correos nuevos...\n");
+                                visualizer.showMessage("Cargando correos nuevos...\n");
                                 // Iterate through all unread messages.
                                 for(Email email : emailLoader.getUnreadEmail(authenticator.getService()))
                                 {
                                     // Print snippet and whether is spam or not (calling spam filter).
-                                    visualizer.showEmail("[????] " + email.getSnippet());
+                                    if(spamFilter.determineEmail(email))
+                                    {
+                                        messageSpam = "[SPAM] ";
+                                    }
+                                    else
+                                    {
+                                        messageSpam = "[NOT SPAM] ";
+                                    }
+                                    visualizer.showMessage(messageSpam + email.getSnippet());
                                 }
-                                visualizer.showEmail("\nSeleccione cualquier tecla para continuar.");
+                                visualizer.showMessage("\nSeleccione cualquier tecla para continuar.");
                                 visualizer.readConsoleString();
                                 break;
                             }
