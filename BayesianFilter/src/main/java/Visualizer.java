@@ -12,12 +12,17 @@ public class Visualizer {
     }
     public void showMainMenu()
     {
-        System.out.println("Seleccione una opcion\n[1]Configurar\n[2]Entrenar\n[3]Mostrar datos\n[4]Obtener correo nuevo\n[5]Cerrar sesion\n[6]Salir\n[7]Prueba");
+        System.out.println("Seleccione una opción\n[1]Configurar\n[2]Entrenar\n[3]Mostrar datos\n[4]Obtener correos nuevo\n[5]Cerrar sesion\n[6]Salir\n[7]Prueba");
     }
 
     public void showConfigurationMenu()
     {
         System.out.println("Seleccione una opcion\n[1]Cambiar probabilidad de 'SPAM'\n[2]Cambiar 'SPAM Threshold'\n[3]Cambiar el tamanio del conjunto de entrenamiento'\n[4]Regresar");
+    }
+
+    public void showEmail(String information)
+    {
+        System.out.println(information);
     }
 
     public String readConsoleString()
@@ -35,5 +40,10 @@ public class Visualizer {
         System.out.println("Ingrese un numero decimal");
     }
         return returnValue;
+    }
+
+    public void printMessage(String message)
+    {
+        System.out.println(message);
     }
 }

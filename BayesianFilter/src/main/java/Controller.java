@@ -6,11 +6,13 @@ public class Controller
 {
     private Authenticator authenticator;
     private Visualizer visualizer;
+    private EmailLoader emailLoader;
 
     public Controller()
     {
         authenticator = new Authenticator();
         visualizer = new Visualizer();
+        emailLoader = new EmailLoader();
     }
 
     public void start() throws IOException, GeneralSecurityException
@@ -26,45 +28,72 @@ public class Controller
                     System.exit(0);
                 case"1":
                 case"autenticarse":
-                    if(authenticator.logIn() == true)
+                    authenticator.logIn();
+                    while(true)
                     {
                         visualizer.showMainMenu();
-                        while(true)
+
+                        switch (visualizer.readConsoleString())
                         {
-                            switch (visualizer.readConsoleString())
+                            case"1":
+                            case"configurar":
                             {
-                                case"1":
-                                case"configurar":
-                                    visualizer.showConfigurationMenu();
-                                    while (!goBack)
-                                    {
-                                        switch (visualizer.readConsoleString()) {
-                                            case "1":
-                                                break;
-                                            case "2":
-                                                break;
-                                            case "3":
-                                                break;
-                                            case "4":
-                                            case"regresar":
-                                                visualizer.showMainMenu();
-                                                goBack=true;
-                                                break;
-                                        }
+                                visualizer.showConfigurationMenu();
+                                while (!goBack)
+                                {
+                                    switch (visualizer.readConsoleString()) {
+                                        case "1":
+                                            break;
+                                        case "2":
+                                            break;
+                                        case "3":
+                                            break;
+                                        case "4":
+                                            break;
+                                        case"regresar":
+                                            visualizer.showMainMenu();
+                                            goBack=true;
+                                            break;
                                     }
-                                    break;
-                                case "5":
-                                    authenticator.closeSession();
-                                    start();
-                                    System.exit(0);
-                                    break;
-                                case"7":
-                                    visualizer.readConsoleFloat();
-                                    break;
-                                case "6":
-                                case "salir":
-                                    System.exit(0);
+                                }
+                                break;
                             }
+
+                            // Show training data.
+                            case "3":
+                            {
+                                break;
+                            }
+                            // Get unread messages.
+                            case "4":
+                            {
+                                visualizer.printMessage("Cargando correos nuevos...\n");
+                                // Iterate through all unread messages.
+                                for(Email email : emailLoader.getUnreadEmail(authenticator.getService()))
+                                {
+                                    // Print snippet and whether is spam or not (calling spam filter).
+                                    visualizer.showEmail(email.getSnippet() + " ????");
+                                }
+                                visualizer.printMessage("\nSeleccione cualquier tecla para continuar.");
+                                visualizer.readConsoleString();
+                                break;
+                            }
+                            // Closse session.
+                            case "5":
+                            {
+                                authenticator.closeSession();
+                                start();
+                                System.exit(0);
+                                break;
+                            }
+                            case"7":
+                            {
+                                visualizer.readConsoleFloat();
+                                break;
+                            }
+                            case "6":
+                            case "salir":
+                                System.exit(0);
                         }
                     }
             }

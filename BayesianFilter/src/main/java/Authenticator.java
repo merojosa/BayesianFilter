@@ -27,9 +27,7 @@ public class Authenticator
     private final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_READONLY);
     private Gmail service;
 
-
-
-    public boolean logIn() throws IOException, GeneralSecurityException
+    public void logIn() throws IOException, GeneralSecurityException
     {
         // Disable warnings.
         final java.util.logging.Logger buggyLogger = java.util.logging.Logger.getLogger(FileDataStoreFactory.class.getName());
@@ -41,9 +39,6 @@ public class Authenticator
         service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
                 .setApplicationName(APPLICATION_NAME)
                 .build();
-        // Get the authenticated user id.
-
-        return  true;
     }
 
     public void closeSession()
@@ -74,4 +69,8 @@ public class Authenticator
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
 
+    public Gmail getService()
+    {
+        return service;
+    }
 }
