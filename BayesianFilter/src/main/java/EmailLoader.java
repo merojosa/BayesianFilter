@@ -42,10 +42,9 @@ public class EmailLoader
 
         // Get unread messages.
         List<Message> unreadMessagesApi = listMessagesResponse.getMessages();
-
         ArrayList<Email> emailsList = new ArrayList<>();
 
-        if (unreadMessagesApi.isEmpty())
+        if (unreadMessagesApi == null)
         {
             return emailsList;
         }
