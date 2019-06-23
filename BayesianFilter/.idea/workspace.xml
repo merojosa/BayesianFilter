@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38e4fc38-296c-42d5-9039-411250b31103" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/EmailLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EmailLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tokens/StoredCredential" beforeDir="false" afterPath="$PROJECT_DIR$/tokens/StoredCredential" afterDir="false" />
     </list>
@@ -46,8 +44,32 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/EmailLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+            <state relative-caret-position="87">
+              <caret line="104" column="17" selection-start-line="104" selection-start-column="17" selection-end-line="104" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-gmail/v1-rev83-1.23.0/a4a098b958cd786d07158ccd566f640a654cfff2/google-api-services-gmail-v1-rev83-1.23.0-sources.jar!/com/google/api/services/gmail/model/MessagePartBody.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="89" selection-start-line="89" selection-end-line="89" />
+              <folding>
+                <element signature="e#3582#3583#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-gmail/v1-rev83-1.23.0/a4a098b958cd786d07158ccd566f640a654cfff2/google-api-services-gmail-v1-rev83-1.23.0-sources.jar!/com/google/api/services/gmail/model/MessagePart.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="86" selection-start-line="86" selection-end-line="86" />
+              <folding>
+                <element signature="e#3058#3059#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -55,10 +77,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-gmail/v1-rev83-1.23.0/a4a098b958cd786d07158ccd566f640a654cfff2/google-api-services-gmail-v1-rev83-1.23.0-sources.jar!/com/google/api/services/gmail/model/Message.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="127" selection-start-line="127" selection-end-line="127" />
+            <state relative-caret-position="80">
+              <caret line="184" selection-start-line="184" selection-end-line="184" />
               <folding>
+                <element signature="e#4320#4321#0" expanded="true" />
                 <element signature="e#4339#4340#0" expanded="true" />
+                <element signature="e#6167#6168#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -207,12 +231,12 @@
       <option name="presentableId" value="Default" />
       <updated>1561213477725</updated>
       <workItem from="1561213482480" duration="9220000" />
-      <workItem from="1561325798377" duration="2513000" />
+      <workItem from="1561325798377" duration="5493000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11733000" />
+    <option name="totallyTimeSpent" value="14713000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -236,7 +260,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.3285968" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3285968" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -253,18 +277,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/EmailLoader.java</url>
-          <line>77</line>
-          <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/WordsProbability.java">
@@ -307,18 +319,40 @@
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-gmail/v1-rev83-1.23.0/a4a098b958cd786d07158ccd566f640a654cfff2/google-api-services-gmail-v1-rev83-1.23.0-sources.jar!/com/google/api/services/gmail/model/Message.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="127" selection-start-line="127" selection-end-line="127" />
+        <state relative-caret-position="80">
+          <caret line="184" selection-start-line="184" selection-end-line="184" />
           <folding>
+            <element signature="e#4320#4321#0" expanded="true" />
             <element signature="e#4339#4340#0" expanded="true" />
+            <element signature="e#6167#6168#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-gmail/v1-rev83-1.23.0/a4a098b958cd786d07158ccd566f640a654cfff2/google-api-services-gmail-v1-rev83-1.23.0-sources.jar!/com/google/api/services/gmail/model/MessagePart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="86" selection-start-line="86" selection-end-line="86" />
+          <folding>
+            <element signature="e#3058#3059#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.apis/google-api-services-gmail/v1-rev83-1.23.0/a4a098b958cd786d07158ccd566f640a654cfff2/google-api-services-gmail-v1-rev83-1.23.0-sources.jar!/com/google/api/services/gmail/model/MessagePartBody.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="89" selection-start-line="89" selection-end-line="89" />
+          <folding>
+            <element signature="e#3582#3583#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/EmailLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+        <state relative-caret-position="87">
+          <caret line="104" column="17" selection-start-line="104" selection-start-column="17" selection-end-line="104" selection-end-column="17" />
         </state>
       </provider>
     </entry>

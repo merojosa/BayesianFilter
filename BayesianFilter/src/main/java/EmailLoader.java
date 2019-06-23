@@ -3,10 +3,12 @@ import com.google.api.services.gmail.Gmail;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
 import com.google.api.services.gmail.model.MessagePart;
+import com.google.api.services.gmail.model.MessagePartBody;
 
 
 public class EmailLoader
@@ -75,29 +77,45 @@ public class EmailLoader
 
         // Get body, from and subject.
         List<MessagePart> parts = message.getPayload().getParts();
-        for (MessagePart part : parts)
-        {
-            email.setBody(htmlParser.parseHtmlToPlainText(
-                    new String(Base64.decodeBase64(part.getBody().getData().getBytes()))));
 
-            count = 0;
-            from = "";
-            subject = "";
-            // Search from and subject.
-            while(count < message.getPayload().getHeaders().size() && (from.equals("") || subject.equals("")))
+        // If parts is not null, you can access the body via part (the html type).  But you can't via message.
+        if(parts != null)
+        {
+            for (MessagePart part : parts)
             {
-                if( message.getPayload().getHeaders().get(count).getName().equals("From"))
+                if(part.getMimeType().equals("text/html"))
                 {
-                    from = message.getPayload().getHeaders().get(count).getValue();
-                    email.setFrom(from);
+                    email.setBody(htmlParser.parseHtmlToPlainText(
+                            new String(Base64.decodeBase64(part.getBody().getData().getBytes()))));
+
+                    count = 0;
+                    from = "";
+                    subject = "";
                 }
-                else if(message.getPayload().getHeaders().get(count).getName().equals("Subject"))
-                {
-                    subject = message.getPayload().getHeaders().get(count).getValue();
-                    email.setSubject(subject);
-                }
-                ++count;
             }
+        }
+        else
+        {
+            // If parts is null, you can access the body via the message itself.
+            email.setBody(htmlParser.parseHtmlToPlainText(
+                    new String(Base64.decodeBase64(message.getPayload().getBody().getData().getBytes()))));
+
+        }
+
+        // Search from and subject.
+        while(count < message.getPayload().getHeaders().size() && (from.equals("") || subject.equals("")))
+        {
+            if( message.getPayload().getHeaders().get(count).getName().equals("From"))
+            {
+                from = message.getPayload().getHeaders().get(count).getValue();
+                email.setFrom(from);
+            }
+            else if(message.getPayload().getHeaders().get(count).getName().equals("Subject"))
+            {
+                subject = message.getPayload().getHeaders().get(count).getValue();
+                email.setSubject(subject);
+            }
+            ++count;
         }
 
         return email;
