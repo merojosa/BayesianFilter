@@ -43,11 +43,10 @@ public class SpamFilter
             emailsText = emailsText.concat( spam.get(i).getSubject());
             emailsText = emailsText.concat(" ");
             emailsText = emailsText.concat( spam.get(i).getBody());
-
-            boolean countWord = true;
             double total =0;
             String[] emailWords = emailsText.split("\\s+[^a-zA-z]*|[^a-zA-z]+\\s*");
             int numWord = emailWords.length;
+            HashSet<String> countedWords= countedWords = new HashSet<String>();
             for(int counter = 0;counter < emailWords.length;counter++)
             {
                 WordsProbability word = new WordsProbability();
@@ -59,14 +58,14 @@ public class SpamFilter
                         word.setSpamProbability(new Double(1)/spam.size());
                         word.setWord(emailWords[counter]);
                         wordsProbabilities.put(emailWords[counter], word);
-                        countWord = false;
+                        countedWords.add(emailWords[counter]);
                         total++;
                     } else {
                         total++;
                         word = wordsProbabilities.get(emailWords[counter]);
-                        if(countWord) {
+                        if(!countedWords.contains(emailWords[counter])) {
+                            countedWords.add(emailWords[counter]);
                             word.setTotalSpam(wordsProbabilities.get(emailWords[counter]).getTotalSpam() + 1);
-                            countWord = false;
                             word.setWordAmount(wordsProbabilities.get(emailWords[counter]).getWordAmount() + 1);
                         }
                         word.setSpamProbability(new Double(wordsProbabilities.get(emailWords[counter]).getTotalSpam())/spam.size());
@@ -80,29 +79,23 @@ public class SpamFilter
         for(int j = 0;j<notSpam.size();j++)
         {
             String emailsText = "";
-            emailsText = emailsText.concat(notSpam.get(j).getSnippet());
-            emailsText = emailsText.concat(" ");
             emailsText = emailsText.concat( notSpam.get(j).getSubject());
             emailsText = emailsText.concat(" ");
             emailsText = emailsText.concat( notSpam.get(j).getBody());
 
-            boolean countWord = true;
+            if(emailsText.contains("aerosol"))
+            {
+                String a = "";
+            }
+
             double total =0;
             String[] emailWords = emailsText.split("\\s+[^a-zA-z]*|[^a-zA-z]+\\s*");
             int numWord = emailWords.length;
+            HashSet<String> countedWords= countedWords = new HashSet<String>();
             for(int counter = 0;counter < emailWords.length;counter++)
             {
                 WordsProbability word = new WordsProbability();
                 emailWords[counter] = emailWords[counter].toLowerCase();
-                /*
-                if(emailWords[counter].equals("aerosol"))
-                {
-                    String a="hola";
-                }
-                */
-
-
-
                 if(!commonWords.contains(emailWords[counter]))
                 {
                     if (wordsProbabilities.get(emailWords[counter]) == null) {
@@ -110,15 +103,15 @@ public class SpamFilter
                         word.setNotSpamProbability(new Double(1)/notSpam.size());
                         word.setWord(emailWords[counter]);
                         wordsProbabilities.put(emailWords[counter], word);
-                        countWord = false;
+                        countedWords.add(emailWords[counter]);
                         //quitar esta variable de total?
                         total++;
                     } else {
                         total++;
                         word = wordsProbabilities.get(emailWords[counter]);
-                        if(countWord) {
+                        if(!countedWords.contains(emailWords[counter])) {
+                            countedWords.add(emailWords[counter]);
                             word.setTotalEmails(wordsProbabilities.get(emailWords[counter]).getTotalEmails() + 1);
-                            countWord = false;
                             word.setWordAmount(wordsProbabilities.get(emailWords[counter]).getWordAmount() + 1);
                         }
                         word.setNotSpamProbability(new Double(wordsProbabilities.get(emailWords[counter]).getTotalEmails())/notSpam.size());

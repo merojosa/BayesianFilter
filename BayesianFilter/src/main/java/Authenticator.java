@@ -55,12 +55,14 @@ public class Authenticator
 
     private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException
     {
+        try{
         // Load client secrets.
         InputStream in = GmailQuickstart.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
         }
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+
 
         // Build flow and trigger user authorization request.
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
@@ -69,7 +71,13 @@ public class Authenticator
                 .setAccessType("offline")
                 .build();
         LocalServerReceiver receiver = new LocalServerReceiver.Builder().setPort(8888).build();
+
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
+        }catch (java.net.UnknownHostException e){
+            System.out.println("Hubo un problema de la conexion con el servidor");
+            return null;
+        }
+
     }
 
     public Gmail getService()
