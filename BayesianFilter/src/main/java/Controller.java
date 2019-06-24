@@ -36,6 +36,7 @@ public class Controller
                     System.exit(0);
                 case"1":
                 case"autenticarse":
+
                     authenticator.logIn();
                     spamFilter = new SpamFilter();
                     while(true)
@@ -113,7 +114,19 @@ public class Controller
                                 }
                                 catch(Exception o)
                                 {
-                                    visualizer.showMessage("Ocurrio un error y no se pudo entrenar el sistema.");
+                                    if(o.getMessage() == "Se cancelo el entrenamiento porque se necesitan mas correos para entrenar el sistema.\n")
+                                    {
+                                        visualizer.showMessage(o.getMessage());
+                                    }
+                                    else
+                                        {
+                                            if(o.getMessage().equals("www.googleapis.com")) {
+                                                visualizer.showMessage("No se pudo establecer la conexion con el servidor de google.");
+                                            }
+                                            else {
+                                                visualizer.showMessage("Ocurrio un error y no se pudo entrenar el sistema.\n");
+                                            }
+                                        }
                                 }
                                 break;
                             }
@@ -134,31 +147,35 @@ public class Controller
                             {
                                 visualizer.showMessage("Obteniendo correos nuevos...\n");
                                 // Iterate through all unread messages.
+                                try {
+                                    unreadEmails = emailLoader.getUnreadEmail(authenticator.getService());
 
-                                unreadEmails = emailLoader.getUnreadEmail(authenticator.getService());
-
-                                if(unreadEmails.isEmpty())
-                                {
-                                    visualizer.showMessage("No hay correos nuevos.");
-                                }
-                                else
-                                {
-                                    for(Email email : unreadEmails)
-                                    {
-                                        // Print snippet and whether is spam or not (calling spam filter).
-                                        if(spamFilter.determineEmail(email))
-                                        {
-                                            messageSpam = "[SPAM] ";
+                                    if (unreadEmails.isEmpty()) {
+                                        visualizer.showMessage("No hay correos nuevos.");
+                                    } else {
+                                        for (Email email : unreadEmails) {
+                                            // Print snippet and whether is spam or not (calling spam filter).
+                                            if (spamFilter.determineEmail(email)) {
+                                                messageSpam = "[SPAM] ";
+                                            } else {
+                                                messageSpam = "[NOT SPAM] ";
+                                            }
+                                            visualizer.showMessage(messageSpam + email.getSnippet());
                                         }
-                                        else
-                                        {
-                                            messageSpam = "[NOT SPAM] ";
-                                        }
-                                        visualizer.showMessage(messageSpam + email.getSnippet());
                                     }
+                                    visualizer.showMessage("\nSeleccione cualquier tecla para continuar.");
+                                    visualizer.readConsoleString();
                                 }
-                                visualizer.showMessage("\nSeleccione cualquier tecla para continuar.");
-                                visualizer.readConsoleString();
+                                catch (Exception o)
+                                {
+                                    if(o.getMessage().equals("www.googleapis.com")) {
+                                        visualizer.showMessage("No se pudo establecer la conexion con el servidor de google.");
+                                    }
+                                    else
+                                        {
+                                            visualizer.showMessage("Hubo un problema al obtener correos.");
+                                        }
+                                }
                                 break;
                             }
                             // Close session.

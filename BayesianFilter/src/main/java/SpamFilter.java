@@ -30,98 +30,93 @@ public class SpamFilter
         return true;
     }
 
-    public void train(List<Email> spam,List<Email> notSpam)
+    public void train(List<Email> spam,List<Email> notSpam) throws Exception
     {
-        HashSet<String> commonWords = fileManager.getStopWords();
-        Map<String,WordsProbability> wordsProbabilities = new HashMap<String,WordsProbability>(){{}};
+        if(spam.size()+notSpam.size()>=emailAmount) {
+            HashSet<String> commonWords = fileManager.getStopWords();
+            Map<String, WordsProbability> wordsProbabilities = new HashMap<String, WordsProbability>() {{
+            }};
 
-        for(int i = 0;i<spam.size();i++)
-        {
-            String emailsText = "";
-            emailsText = emailsText.concat(spam.get(i).getSnippet());
-            emailsText = emailsText.concat(" ");
-            emailsText = emailsText.concat( spam.get(i).getSubject());
-            emailsText = emailsText.concat(" ");
-            emailsText = emailsText.concat( spam.get(i).getBody());
-            double total =0;
-            String[] emailWords = emailsText.split("\\s+[^a-zA-z]*|[^a-zA-z]+\\s*");
-            int numWord = emailWords.length;
-            HashSet<String> countedWords= countedWords = new HashSet<String>();
-            for(int counter = 0;counter < emailWords.length;counter++)
-            {
-                WordsProbability word = new WordsProbability();
-                emailWords[counter] = emailWords[counter].toLowerCase();
-                if(!commonWords.contains(emailWords[counter]))
-                {
-                    if (wordsProbabilities.get(emailWords[counter]) == null) {
-                        word.setTotalSpam(1);
-                        word.setSpamProbability(new Double(1)/spam.size());
-                        word.setWord(emailWords[counter]);
-                        wordsProbabilities.put(emailWords[counter], word);
-                        countedWords.add(emailWords[counter]);
-                        total++;
-                    } else {
-                        total++;
-                        word = wordsProbabilities.get(emailWords[counter]);
-                        if(!countedWords.contains(emailWords[counter])) {
+            for (int i = 0; i < spam.size(); i++) {
+                String emailsText = "";
+                emailsText = emailsText.concat(spam.get(i).getSnippet());
+                emailsText = emailsText.concat(" ");
+                emailsText = emailsText.concat(spam.get(i).getSubject());
+                emailsText = emailsText.concat(" ");
+                emailsText = emailsText.concat(spam.get(i).getBody());
+                double total = 0;
+                String[] emailWords = emailsText.split("\\s+[^a-zA-z]*|[^a-zA-z]+\\s*");
+                int numWord = emailWords.length;
+                HashSet<String> countedWords = countedWords = new HashSet<String>();
+                for (int counter = 0; counter < emailWords.length; counter++) {
+                    WordsProbability word = new WordsProbability();
+                    emailWords[counter] = emailWords[counter].toLowerCase();
+                    if (!commonWords.contains(emailWords[counter])) {
+                        if (wordsProbabilities.get(emailWords[counter]) == null) {
+                            word.setTotalSpam(1);
+                            word.setSpamProbability(new Double(1) / spam.size());
+                            word.setWord(emailWords[counter]);
+                            wordsProbabilities.put(emailWords[counter], word);
                             countedWords.add(emailWords[counter]);
-                            word.setTotalSpam(wordsProbabilities.get(emailWords[counter]).getTotalSpam() + 1);
-                            word.setWordAmount(wordsProbabilities.get(emailWords[counter]).getWordAmount() + 1);
+                            total++;
+                        } else {
+                            total++;
+                            word = wordsProbabilities.get(emailWords[counter]);
+                            if (!countedWords.contains(emailWords[counter])) {
+                                countedWords.add(emailWords[counter]);
+                                word.setTotalSpam(wordsProbabilities.get(emailWords[counter]).getTotalSpam() + 1);
+                                word.setWordAmount(wordsProbabilities.get(emailWords[counter]).getWordAmount() + 1);
+                            }
+                            word.setSpamProbability(new Double(wordsProbabilities.get(emailWords[counter]).getTotalSpam()) / spam.size());
+                            wordsProbabilities.put(emailWords[counter], word);
                         }
-                        word.setSpamProbability(new Double(wordsProbabilities.get(emailWords[counter]).getTotalSpam())/spam.size());
-                        wordsProbabilities.put(emailWords[counter], word);
                     }
+
+                }
+            }
+
+            for (int j = 0; j < notSpam.size(); j++) {
+                String emailsText = "";
+                emailsText = emailsText.concat(notSpam.get(j).getSubject());
+                emailsText = emailsText.concat(" ");
+                emailsText = emailsText.concat(notSpam.get(j).getBody());
+
+                if (emailsText.contains("aerosol")) {
+                    String a = "";
                 }
 
-            }
-        }
-
-        for(int j = 0;j<notSpam.size();j++)
-        {
-            String emailsText = "";
-            emailsText = emailsText.concat( notSpam.get(j).getSubject());
-            emailsText = emailsText.concat(" ");
-            emailsText = emailsText.concat( notSpam.get(j).getBody());
-
-            if(emailsText.contains("aerosol"))
-            {
-                String a = "";
-            }
-
-            double total =0;
-            String[] emailWords = emailsText.split("\\s+[^a-zA-z]*|[^a-zA-z]+\\s*");
-            int numWord = emailWords.length;
-            HashSet<String> countedWords= countedWords = new HashSet<String>();
-            for(int counter = 0;counter < emailWords.length;counter++)
-            {
-                WordsProbability word = new WordsProbability();
-                emailWords[counter] = emailWords[counter].toLowerCase();
-                if(!commonWords.contains(emailWords[counter]))
-                {
-                    if (wordsProbabilities.get(emailWords[counter]) == null) {
-                        word.setTotalEmails(1);
-                        word.setNotSpamProbability(new Double(1)/notSpam.size());
-                        word.setWord(emailWords[counter]);
-                        wordsProbabilities.put(emailWords[counter], word);
-                        countedWords.add(emailWords[counter]);
-                        //quitar esta variable de total?
-                        total++;
-                    } else {
-                        total++;
-                        word = wordsProbabilities.get(emailWords[counter]);
-                        if(!countedWords.contains(emailWords[counter])) {
+                double total = 0;
+                String[] emailWords = emailsText.split("\\s+[^a-zA-z]*|[^a-zA-z]+\\s*");
+                int numWord = emailWords.length;
+                HashSet<String> countedWords = countedWords = new HashSet<String>();
+                for (int counter = 0; counter < emailWords.length; counter++) {
+                    WordsProbability word = new WordsProbability();
+                    emailWords[counter] = emailWords[counter].toLowerCase();
+                    if (!commonWords.contains(emailWords[counter])) {
+                        if (wordsProbabilities.get(emailWords[counter]) == null) {
+                            word.setTotalEmails(1);
+                            word.setNotSpamProbability(new Double(1) / notSpam.size());
+                            word.setWord(emailWords[counter]);
+                            wordsProbabilities.put(emailWords[counter], word);
                             countedWords.add(emailWords[counter]);
-                            word.setTotalEmails(wordsProbabilities.get(emailWords[counter]).getTotalEmails() + 1);
-                            word.setWordAmount(wordsProbabilities.get(emailWords[counter]).getWordAmount() + 1);
+                            //quitar esta variable de total?
+                            total++;
+                        } else {
+                            total++;
+                            word = wordsProbabilities.get(emailWords[counter]);
+                            if (!countedWords.contains(emailWords[counter])) {
+                                countedWords.add(emailWords[counter]);
+                                word.setTotalEmails(wordsProbabilities.get(emailWords[counter]).getTotalEmails() + 1);
+                                word.setWordAmount(wordsProbabilities.get(emailWords[counter]).getWordAmount() + 1);
+                            }
+                            word.setNotSpamProbability(new Double(wordsProbabilities.get(emailWords[counter]).getTotalEmails()) / notSpam.size());
+                            wordsProbabilities.put(emailWords[counter], word);
                         }
-                        word.setNotSpamProbability(new Double(wordsProbabilities.get(emailWords[counter]).getTotalEmails())/notSpam.size());
-                        wordsProbabilities.put(emailWords[counter], word);
                     }
-                }
 
+                }
             }
-        }
-        wordsProbabilities.remove("");
+            wordsProbabilities.remove("");
         /*
         for (Map.Entry<String, WordsProbability> entry : wordsProbabilities.entrySet()) {
             System.out.println("clave: " + entry.getKey() + " ,palabra: " + entry.getValue().getWord()
@@ -130,7 +125,9 @@ public class SpamFilter
             );
         }
         */
-        fileManager.saveWordsProbability(wordsProbabilities);
+            fileManager.saveWordsProbability(wordsProbabilities);
+        }
+        else{throw new Exception("Se cancelo el entrenamiento porque se necesitan mas correos para entrenar el sistema");}
     }
 
     public void changeConfiguration()
