@@ -109,10 +109,11 @@ public class Controller
                                 visualizer.showMessage("Entrenando el sistema...\n");
                                 //try {
                                     spamFilter.train(emailLoader.getSpam(authenticator.getService()), emailLoader.getNotSpam(authenticator.getService()));
-                                /*}
+                                    /*
+                                }
                                 catch(Exception o)
                                 {
-                                    visualizer.showMessage("Ocurrió un error y no se pudo entrenar el sistema.");
+                                    visualizer.showMessage("Ocurrio un error y no se pudo entrenar el sistema.");
                                 }*/
                                 break;
                             }
