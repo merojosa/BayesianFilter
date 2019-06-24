@@ -51,14 +51,19 @@ public class FileManager
             while (true)
             {
                 Object objectReaded;
+
                 objectReaded = is.readObject();
-                WordsProbability currentWord = (WordsProbability)objectReaded;
-                wordsProbabilities.put(currentWord.getWord(),currentWord);
+                String key = (String) objectReaded;
+
+                objectReaded = is.readObject();
+                WordsProbability currentWord=(WordsProbability)objectReaded;
+
+                wordsProbabilities.put(key, currentWord);
                 /*
-                System.out.println("Palabra"+currentWord.getWord());
-                System.out.println("cantidad"+currentWord.getWordAmount());
-                System.out.println("proba spam: "+currentWord.getSpamProbability());
-                System.out.println("proba notspam: "+currentWord.getNotSpamProbability());*/
+                System.out.println("Palabra " + currentWord.getWord());
+                System.out.println("proba spam : " + currentWord.getSpamProbability());
+                System.out.println("proba notspam : " + currentWord.getNotSpamProbability()+"\n");
+                */
             }
         }
         catch (Exception o)

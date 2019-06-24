@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.lang.System;
 import java.security.GeneralSecurityException;
@@ -107,14 +108,13 @@ public class Controller
                             case "2":
                             {
                                 visualizer.showMessage("Entrenando el sistema...\n");
-                                //try {
+                                try {
                                     spamFilter.train(emailLoader.getSpam(authenticator.getService()), emailLoader.getNotSpam(authenticator.getService()));
-                                    /*
                                 }
                                 catch(Exception o)
                                 {
                                     visualizer.showMessage("Ocurrio un error y no se pudo entrenar el sistema.");
-                                }*/
+                                }
                                 break;
                             }
                             // Show training data.
