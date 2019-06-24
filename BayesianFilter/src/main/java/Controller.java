@@ -17,7 +17,6 @@ public class Controller
         authenticator = new Authenticator();
         visualizer = new Visualizer();
         emailLoader = new EmailLoader();
-        spamFilter = new SpamFilter();
     }
 
     public void start() throws IOException, GeneralSecurityException
@@ -37,6 +36,7 @@ public class Controller
                 case"1":
                 case"autenticarse":
                     authenticator.logIn();
+                    spamFilter = new SpamFilter();
                     while(true)
                     {
                         visualizer.showMainMenu();
@@ -106,13 +106,14 @@ public class Controller
                             // Train
                             case "2":
                             {
-                                try {
+                                visualizer.showMessage("Entrenando el sistema...\n");
+                                //try {
                                     spamFilter.train(emailLoader.getSpam(authenticator.getService()), emailLoader.getNotSpam(authenticator.getService()));
-                                }
+                                /*}
                                 catch(Exception o)
                                 {
                                     visualizer.showMessage("Ocurrió un error y no se pudo entrenar el sistema.");
-                                }
+                                }*/
                                 break;
                             }
                             // Show training data.

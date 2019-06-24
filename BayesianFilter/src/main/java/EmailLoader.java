@@ -43,18 +43,27 @@ public class EmailLoader
     public List<Email> getNotSpam(Gmail service)
     {
         try {
-            ListMessagesResponse spamlist = service.users().messages().list(USER_ID).setQ("is:inbox").execute();
-            List<Message> messages = spamlist.getMessages();
-            ArrayList<Email> spamList = new ArrayList<>();
-            for(int i = 0; i < messages.size();i++)
-            {
-                spamList.add(this.getEmail(service,USER_ID,messages.get(i).getId()));
+            Gmail.Users.Messages.List request = service.users().messages().list(USER_ID);
+            request.setQ("is:inbox");
+            ListMessagesResponse listMessagesResponse = request.execute();
+
+            // Get unread messages.
+            List<Message> unreadMessagesApi = listMessagesResponse.getMessages();
+            ArrayList<Email> emailsList = new ArrayList<>();
+
+            if (unreadMessagesApi == null) {
+                return emailsList;
+            } else {
+                Email email;
+                for (Message message : unreadMessagesApi) {
+                    email = getEmail(service, USER_ID, message.getId());
+                    emailsList.add(email);
+                }
+                return emailsList;
             }
-            return spamList;
         }
         catch (Exception o)
         {
-            System.out.println("Hubo un problema al obtener los correos que no son spam.");
             return null;
         }
     }

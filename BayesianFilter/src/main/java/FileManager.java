@@ -1,5 +1,6 @@
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.io.IOException;
 import java.util.List;
@@ -15,6 +16,7 @@ public class FileManager
     {
         return null;
     }
+
 
     public HashSet<String> getStopWords()
     {
@@ -39,28 +41,31 @@ public class FileManager
         return stopWords;
     }
 
-    //HAY QUE ARREGLAR ESTE MÉTODO
     public Map<String, WordsProbability> loadWordsProbability()
     {
+        Map<String,WordsProbability> wordsProbabilities = new HashMap<String,WordsProbability>(){{}};
         try
         {
-            FileInputStream file = new FileInputStream("trainning.dat");
+            FileInputStream file = new FileInputStream("training.dat");
             ObjectInputStream is = new ObjectInputStream(file);
-
             while (true)
             {
                 Object objectReaded;
                 objectReaded = is.readObject();
-                WordsProbability tmpWord = (WordsProbability)objectReaded;
-                System.out.println("Palabra"+tmpWord.getWord());
-                System.out.println("cantidad"+tmpWord.getWordAmount());
+                WordsProbability currentWord = (WordsProbability)objectReaded;
+                wordsProbabilities.put(currentWord.getWord(),currentWord);
+                /*
+                System.out.println("Palabra"+currentWord.getWord());
+                System.out.println("cantidad"+currentWord.getWordAmount());
+                System.out.println("proba spam: "+currentWord.getSpamProbability());
+                System.out.println("proba notspam: "+currentWord.getNotSpamProbability());*/
             }
         }
         catch (Exception o)
         {
             System.out.println("No se pudo abir el archivo");
         }
-        return null;
+        return wordsProbabilities;
     }
 
     public void saveTrainingData(float spamProbability, float spamThreshold, int emailAmount)
@@ -71,7 +76,7 @@ public class FileManager
     public void saveWordsProbability(Map<String, WordsProbability> wordsProbability)
     {
         try {
-            FileOutputStream file = new FileOutputStream("trainning.dat");
+            FileOutputStream file = new FileOutputStream("training.dat");
             ObjectOutputStream os = new ObjectOutputStream(file);
             for(Map.Entry<String,WordsProbability> actualWord: wordsProbability.entrySet())
             {
