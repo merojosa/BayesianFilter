@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.lang.System;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +25,8 @@ public class Controller
         visualizer.showStartApp();
         boolean goBack = false;
         String messageSpam = "";
+        ArrayList<Email> unreadEmails;
+
         while(true)
         {
             switch (visualizer.readConsoleString())
@@ -127,20 +130,30 @@ public class Controller
                             // Get unread messages.
                             case "4":
                             {
-                                visualizer.showMessage("Cargando correos nuevos...\n");
+                                visualizer.showMessage("Obteniendo correos nuevos...\n");
                                 // Iterate through all unread messages.
-                                for(Email email : emailLoader.getUnreadEmail(authenticator.getService()))
+
+                                unreadEmails = emailLoader.getUnreadEmail(authenticator.getService());
+
+                                if(unreadEmails.isEmpty())
                                 {
-                                    // Print snippet and whether is spam or not (calling spam filter).
-                                    if(spamFilter.determineEmail(email))
+                                    visualizer.showMessage("No hay correos nuevos.");
+                                }
+                                else
+                                {
+                                    for(Email email : unreadEmails)
                                     {
-                                        messageSpam = "[SPAM] ";
+                                        // Print snippet and whether is spam or not (calling spam filter).
+                                        if(spamFilter.determineEmail(email))
+                                        {
+                                            messageSpam = "[SPAM] ";
+                                        }
+                                        else
+                                        {
+                                            messageSpam = "[NOT SPAM] ";
+                                        }
+                                        visualizer.showMessage(messageSpam + email.getSnippet());
                                     }
-                                    else
-                                    {
-                                        messageSpam = "[NOT SPAM] ";
-                                    }
-                                    visualizer.showMessage(messageSpam + email.getSnippet());
                                 }
                                 visualizer.showMessage("\nSeleccione cualquier tecla para continuar.");
                                 visualizer.readConsoleString();
