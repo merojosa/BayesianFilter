@@ -1,6 +1,5 @@
 import com.google.api.client.repackaged.org.apache.commons.codec.binary.Base64;
 import com.google.api.services.gmail.Gmail;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,19 +19,53 @@ public class EmailLoader
     {
         htmlParser = new HtmlParser();
     }
+
+
     public List<Email> getSpam(Gmail service)
     {
         try {
             ListMessagesResponse spamlist = service.users().messages().list(USER_ID).setQ("is:spam").execute();
             List<Message> messages = spamlist.getMessages();
+            ArrayList<Email> spamList = new ArrayList<>();
+            for(int i = 0; i < messages.size();i++)
+            {
+                spamList.add(this.getEmail(service,USER_ID,messages.get(i).getId()));
+            }
+            return spamList;
         }
-        catch(Exception e){}
-
-        return null;
+        catch (Exception o)
+        {
+            System.out.println("Hubo un problema al obtener los correos de spam.");
+            return null;
+        }
     }
-    public void getNotSpam()
-    {
 
+    public List<Email> getNotSpam(Gmail service)
+    {
+        try {
+            Gmail.Users.Messages.List request = service.users().messages().list(USER_ID);
+            request.setQ("is:inbox");
+            ListMessagesResponse listMessagesResponse = request.execute();
+
+            // Get unread messages.
+            List<Message> unreadMessagesApi = listMessagesResponse.getMessages();
+            ArrayList<Email> emailsList = new ArrayList<>();
+
+            if (unreadMessagesApi == null) {
+                return emailsList;
+            } else {
+                Email email;
+                for (Message message : unreadMessagesApi) {
+                    email = getEmail(service, USER_ID, message.getId());
+                    emailsList.add(email);
+                }
+                return emailsList;
+            }
+        }
+        catch (Exception o)
+        {
+            return null;
+        }
     }
 
     public ArrayList<Email> getUnreadEmail(Gmail service)  throws IOException
@@ -61,7 +94,6 @@ public class EmailLoader
             return emailsList;
         }
     }
-
     // Extract snippet, from, body and footer.
     private Email getEmail(Gmail service, String userId, String messageId)
             throws IOException

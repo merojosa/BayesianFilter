@@ -11,12 +11,14 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.GmailScopes;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 import java.util.List;
 import java.io.File;
-
+import java.io.InputStreamReader;
 import static java.util.logging.Level.*;
 
 public class Authenticator
