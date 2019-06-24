@@ -121,14 +121,16 @@ public class SpamFilter
 
             }
         }
+        wordsProbabilities.remove("");
+        /*
         for (Map.Entry<String, WordsProbability> entry : wordsProbabilities.entrySet()) {
             System.out.println("clave: " + entry.getKey() + " ,palabra: " + entry.getValue().getWord()
             +" ,proba spam:  "+entry.getValue().getSpamProbability() + ", proba de no spam:  "+entry.getValue().getNotSpamProbability()
             + ",cantidad en no spam:"+entry.getValue().getTotalEmails()
             );
         }
-
-        //fileManager.saveWordsProbability(wordsProbabilities);
+        */
+        fileManager.saveWordsProbability(wordsProbabilities);
     }
 
     public void changeConfiguration()
