@@ -103,6 +103,13 @@ public class Controller
                             // Train
                             case "2":
                             {
+                                try {
+                                    spamFilter.train(emailLoader.getSpam(authenticator.getService()), emailLoader.getNotSpam(authenticator.getService()));
+                                }
+                                catch(Exception o)
+                                {
+                                    visualizer.showMessage("Ocurrió un error y no se pudo entrenar el sistema.");
+                                }
                                 break;
                             }
                             // Show training data.
@@ -139,7 +146,7 @@ public class Controller
                                 visualizer.readConsoleString();
                                 break;
                             }
-                            // Closse session.
+                            // Close session.
                             case "5":
                             {
                                 authenticator.closeSession();

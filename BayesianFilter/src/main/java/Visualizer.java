@@ -1,5 +1,6 @@
 import java.util.Map;
 import java.util.Scanner;
+
 public class Visualizer
 {
     private Scanner scanner;
