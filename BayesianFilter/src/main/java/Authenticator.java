@@ -49,8 +49,14 @@ public class Authenticator
         // Delete token
         File file = new File(TOKENS_DIRECTORY_PATH + "/StoredCredential");
         file.delete();
-
         // Delete training data
+        try {
+            File trainingFile = new File("tokens/training.dat");
+            trainingFile.delete();
+        }
+        catch (Exception o)
+        {
+        }
     }
 
     private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException
