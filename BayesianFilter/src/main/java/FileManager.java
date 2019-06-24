@@ -46,7 +46,7 @@ public class FileManager
         Map<String,WordsProbability> wordsProbabilities = new HashMap<String,WordsProbability>(){{}};
         try
         {
-            FileInputStream file = new FileInputStream("training.dat");
+            FileInputStream file = new FileInputStream("tokens/training.dat");
             ObjectInputStream is = new ObjectInputStream(file);
             while (true)
             {
@@ -59,11 +59,11 @@ public class FileManager
                 WordsProbability currentWord=(WordsProbability)objectReaded;
 
                 wordsProbabilities.put(key, currentWord);
-                /*
+/*
                 System.out.println("Palabra " + currentWord.getWord());
                 System.out.println("proba spam : " + currentWord.getSpamProbability());
                 System.out.println("proba notspam : " + currentWord.getNotSpamProbability()+"\n");
-                */
+*/
             }
         }
         catch (Exception o)
@@ -81,7 +81,7 @@ public class FileManager
     public void saveWordsProbability(Map<String, WordsProbability> wordsProbability)
     {
         try {
-            FileOutputStream file = new FileOutputStream("training.dat");
+            FileOutputStream file = new FileOutputStream("tokens/training.dat");
             ObjectOutputStream os = new ObjectOutputStream(file);
             for(Map.Entry<String,WordsProbability> actualWord: wordsProbability.entrySet())
             {
