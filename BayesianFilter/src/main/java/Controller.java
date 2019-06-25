@@ -43,6 +43,10 @@ public class Controller
                     }
                 }
             }
+            else
+            {
+                authenticator.logIn();
+            }
             spamFilter = new SpamFilter();
             while (true)
             {
