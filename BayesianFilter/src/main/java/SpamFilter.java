@@ -6,8 +6,8 @@ import java.util.HashMap;
 public class SpamFilter
 {
 
-    private float spamProbability;
-    private float spamThreshold;
+    private double spamProbability;
+    private double spamThreshold;
     private int emailAmount;
     private Map<String, WordsProbability> wordsProbabilities;
     private FileManager fileManager;
@@ -19,8 +19,8 @@ public class SpamFilter
             /*
         }
         catch(Exception o){}*/
-        spamProbability = (float)0.3;
-        spamThreshold = (float)0.9;
+        spamProbability = 0.3;
+        spamThreshold = 0.9;
         emailAmount = 50;
     }
 
@@ -32,7 +32,44 @@ public class SpamFilter
      */
     public boolean determineEmail(Email email)
     {
-        return true;
+        Double spamProbabilities = 0.0;
+        Double notSpamProbabilities = 0.0;
+
+        HashSet<String> computedWords = new HashSet<String>();
+
+        // Iterate through body, subject and from.
+        multiplyProbabilities(email.getBody(), spamProbabilities, notSpamProbabilities, computedWords);
+        multiplyProbabilities(email.getSubject(), spamProbabilities, notSpamProbabilities, computedWords);
+        multiplyProbabilities(email.getFrom(), spamProbabilities, notSpamProbabilities, computedWords);
+
+        double result = spamProbabilities/(spamProbabilities + notSpamProbabilities);
+
+        if(result < spamThreshold)  // If it is less than the threshold, is not spam.
+        {
+            return false;
+        }
+        else                        // Is spam.
+        {
+            return true;
+        }
+    }
+
+    private void multiplyProbabilities(String text, Double spamProbabilities, Double notSpamProbabilities, HashSet computedWords)
+    {
+        WordsProbability singleWord = null;
+
+        // Word by word, includes letters only.
+        for (String word : text.split("\\s+[^a-zA-z]*|[^a-zA-z]+\\s*"))
+        {
+            // Do things only if the word exists in teh spam filter and if the words was not added
+            if(wordsProbabilities.containsKey(word) == true && computedWords.contains(word) == false)
+            {
+                computedWords.add(word);
+                singleWord = wordsProbabilities.get(word);
+                spamProbabilities *= singleWord.getSpamProbability();
+                notSpamProbabilities *= singleWord.getNotSpamProbability();
+            }
+        }
     }
 
     /**
@@ -146,11 +183,11 @@ public class SpamFilter
 
     }
 
-    public float getSpamProbability() {
+    public double getSpamProbability() {
         return spamProbability;
     }
 
-    public float getSpamThreshold() {
+    public double getSpamThreshold() {
         return spamThreshold;
     }
 
@@ -158,11 +195,11 @@ public class SpamFilter
         return emailAmount;
     }
 
-    public void setSpamProbability(float spamProbability) {
+    public void setSpamProbability(double spamProbability) {
         this.spamProbability = spamProbability;
     }
 
-    public void setSpamThreshold(float spamThreshold) {
+    public void setSpamThreshold(double spamThreshold) {
         this.spamThreshold = spamThreshold;
     }
 

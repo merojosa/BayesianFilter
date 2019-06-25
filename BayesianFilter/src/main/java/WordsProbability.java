@@ -13,8 +13,6 @@ public class WordsProbability  implements Serializable
         this.wordAmount = wordAmount;
     }
 
-    //
-
     private String word;
 
     private int totalSpam;

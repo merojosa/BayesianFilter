@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.IOException;
 import java.lang.System;
 import java.security.GeneralSecurityException;
@@ -55,11 +54,11 @@ public class Controller
                                         case "cambiar probabilidad de 'spam'":
                                         case "probabilidad":
                                             visualizer.showMessage("Ingrese el nuevo valor de la probabilidad");
-                                            float probability = visualizer.readConsoleFloat();
+                                            double probability = visualizer.readConsoleDouble();
                                             while(!(probability >= 0 && probability<=1))
                                             {
                                                 visualizer.showMessage("Ingrese un valor entre 0 y 1");
-                                                probability = visualizer.readConsoleFloat();
+                                                probability = visualizer.readConsoleDouble();
                                             }
                                             spamFilter.setSpamProbability(probability);
                                             visualizer.showMessage("El valor fue guardado");
@@ -69,11 +68,11 @@ public class Controller
                                         case"limite":
                                         case"threshold":
                                             visualizer.showMessage("Ingrese el nuevo valor del threshold");
-                                            float threshold = visualizer.readConsoleFloat();
+                                            double threshold = visualizer.readConsoleDouble();
                                             while(!(threshold >= 0 && threshold<=1))
                                             {
                                                 visualizer.showMessage("Ingrese un valor entre 0 y 1");
-                                                threshold = visualizer.readConsoleFloat();
+                                                threshold = visualizer.readConsoleDouble();
                                             }
                                             spamFilter.setSpamThreshold(threshold);
                                             break;
@@ -150,14 +149,20 @@ public class Controller
                                 try {
                                     unreadEmails = emailLoader.getUnreadEmail(authenticator.getService());
 
-                                    if (unreadEmails.isEmpty()) {
+                                    if (unreadEmails.isEmpty())
+                                    {
                                         visualizer.showMessage("No hay correos nuevos.");
-                                    } else {
-                                        for (Email email : unreadEmails) {
+                                    }
+                                    else
+                                    {
+                                        for (Email email : unreadEmails)
+                                        {
                                             // Print snippet and whether is spam or not (calling spam filter).
-                                            if (spamFilter.determineEmail(email)) {
+                                            if (spamFilter.determineEmail(email))
+                                            {
                                                 messageSpam = "[SPAM] ";
-                                            } else {
+                                            } else
+                                            {
                                                 messageSpam = "[NOT SPAM] ";
                                             }
                                             visualizer.showMessage(messageSpam + email.getSnippet());
