@@ -102,4 +102,12 @@ public class Authenticator
     {
         return service;
     }
+
+    public boolean isAuthenticated()
+    {
+        File file = new File(TOKENS_DIRECTORY_PATH + "/StoredCredential");
+
+        // If exists, the user is already authenticated.
+        return file.exists();
+    }
 }
