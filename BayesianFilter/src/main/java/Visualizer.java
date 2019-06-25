@@ -1,33 +1,58 @@
 import java.util.Map;
 import java.util.Scanner;
+
 public class Visualizer
 {
     private Scanner scanner;
     private final int SIZE_WORD = 16;
 
+    /**
+     * Constructor of Visualizer
+     * Initialize Scanner
+     */
     public Visualizer() {
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Shows the start menu for the user to be able to log in of the application.
+     */
     public void showStartApp()
     {
         System.out.println("Bienvenido a la aplicacion de Filtro Bayesiano \n Seleccione una opcion \n[1]Autenticarse\n[2]Salir" );
     }
+
+    /**
+     * Shows the main menu of the application for the user to be able to use it.
+     */
     public void showMainMenu()
     {
         System.out.println("Seleccione una opción\n[1]Configurar\n[2]Entrenar\n[3]Mostrar datos\n[4]Obtener correos nuevos\n[5]Cerrar sesion\n[6]Salir");
     }
 
+    /**
+     * Shows the configuration menu.
+     */
     public void showConfigurationMenu()
     {
         System.out.println("Seleccione una opcion\n[1]Cambiar probabilidad de 'SPAM'\n[2]Cambiar 'SPAM Threshold'\n[3]Cambiar el tamanio del conjunto de entrenamiento\n[4]Mostrar configuracion\n[5]Regresar");
     }
 
+    /**
+     * Shows the configuration the system is using
+     * @param spamProbability
+     * @param spamThreshold
+     * @param emailAmount
+     */
     public void showConfiguration(float spamProbability, float spamThreshold, int emailAmount)
     {
         System.out.println("Probabilidad de spam: "+spamProbability+"\nLimite de spam: "+spamThreshold+"\nMinimo de cantidad de correos: "+emailAmount);
     }
 
+    /**
+     * Shows the traning data.
+     * @param wordsProbabilities
+     */
     public void showTrainingData(Map<String, WordsProbability> wordsProbabilities)
     {
         if(wordsProbabilities.size() > 0)
@@ -67,11 +92,19 @@ public class Visualizer
 
     }
 
+    /**
+     * Reads a string from the consonle
+     * @return string
+     */
     public String readConsoleString()
     {
         return scanner.next().toLowerCase();
     }
 
+    /**
+     * Reads a float from the console
+     * @return float
+     */
     public Float readConsoleFloat()
     {
         float returnValue = 0;
@@ -84,6 +117,10 @@ public class Visualizer
         return returnValue;
     }
 
+    /**
+     * Reads an Int from the console
+     * @return int
+     */
     public int readConsonleInt()
     {
         int returnValue = 0;
@@ -96,6 +133,10 @@ public class Visualizer
         return returnValue;
     }
 
+    /**
+     * Displays a messae in the console
+     * @param message
+     */
     public void showMessage(String message)
     {
         System.out.println(message);
