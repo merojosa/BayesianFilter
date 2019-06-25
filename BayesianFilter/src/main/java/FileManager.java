@@ -58,27 +58,40 @@ public class FileManager
         {
             FileInputStream file = new FileInputStream("tokens/training.dat");
             ObjectInputStream is = new ObjectInputStream(file);
-            while (true)
+            Object objectReaded = null;
+            boolean read = false;
+            while (!read)
             {
-                Object objectReaded;
+                try {
+                    objectReaded = is.readObject();
+                }
+                catch(Exception o)
+                {
+                    read = true;
+                }
+                if(!read) {
+                    String key = (String) objectReaded;
 
-                objectReaded = is.readObject();
-                String key = (String) objectReaded;
+                    objectReaded = is.readObject();
+                    WordsProbability currentWord = (WordsProbability) objectReaded;
 
-                objectReaded = is.readObject();
-                WordsProbability currentWord=(WordsProbability)objectReaded;
-
-                wordsProbabilities.put(key, currentWord);
-/*
-                System.out.println("Palabra " + currentWord.getWord());
-                System.out.println("proba spam : " + currentWord.getSpamProbability());
-                System.out.println("proba notspam : " + currentWord.getNotSpamProbability()+"\n");
-*/
+                    wordsProbabilities.put(key, currentWord);
+                    System.out.println("Palabra " + currentWord.getWord());
+                    System.out.println("proba spam : " + currentWord.getSpamProbability());
+                    System.out.println("proba notspam : " + currentWord.getNotSpamProbability() + "\n");
+                }
             }
         }
         catch (Exception o)
         {
-            System.out.println("No se pudo abir el archivo");
+            if(o.getMessage()==null || o.getMessage().equals("WordsProbability cannot be cast to java.lang.String"))
+            {
+                System.out.println("Se termino de leer el archivo.\n");
+            }
+            else
+                {
+                System.out.println("No se pudo abir el archivo");
+                }
         }
         return wordsProbabilities;
     }
