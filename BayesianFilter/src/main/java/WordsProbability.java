@@ -36,6 +36,8 @@ public class WordsProbability  implements Serializable
 
     public WordsProbability()
     {
+        this.totalSpam = 0;
+        this.totalEmails = 0;
     }
 
     public int getTotalSpam() {
@@ -58,7 +60,7 @@ public class WordsProbability  implements Serializable
         return spamProbability;
     }
 
-    public void setSpamProbability(float spamProbability) {
+    public void setSpamProbability(double spamProbability) {
         this.spamProbability = spamProbability;
     }
 
@@ -66,7 +68,7 @@ public class WordsProbability  implements Serializable
         return notSpamProbability;
     }
 
-    public void setNotSpamProbability(float notSpamProbability) {
+    public void setNotSpamProbability(double notSpamProbability) {
         this.notSpamProbability = notSpamProbability;
     }
 
