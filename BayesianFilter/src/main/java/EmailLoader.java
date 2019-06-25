@@ -20,7 +20,11 @@ public class EmailLoader
         htmlParser = new HtmlParser();
     }
 
-
+    /**
+     * Gets the emails in the spam board.
+     * @param service
+     * @return ArrayList<Email>
+     */
     public List<Email> getSpam(Gmail service)
     {
         try {
@@ -40,6 +44,11 @@ public class EmailLoader
         }
     }
 
+    /**
+     * Gets the emails in the inbox.
+     * @param service
+     * @return  ArrayList<Email>
+     */
     public List<Email> getNotSpam(Gmail service)
     {
         try {
@@ -68,6 +77,12 @@ public class EmailLoader
         }
     }
 
+    /**
+     * Gets the unread emails
+     * @param service
+     * @return  ArrayList<Email>
+     * @throws IOException
+     */
     public ArrayList<Email> getUnreadEmail(Gmail service)  throws IOException
     {
         // Make a request to recieve unread messages.
@@ -94,7 +109,15 @@ public class EmailLoader
             return emailsList;
         }
     }
-    // Extract snippet, from, body and footer.
+
+    /**
+     * Extracts the snippet, from, body and footer.
+     * @param service
+     * @param userId
+     * @param messageId
+     * @return Email
+     * @throws IOException
+     */
     private Email getEmail(Gmail service, String userId, String messageId)
             throws IOException
     {

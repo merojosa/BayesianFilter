@@ -24,12 +24,23 @@ public class SpamFilter
         emailAmount = 50;
     }
 
-    // True if is spam.
+    /**
+     * Determines if an email is spam or not.
+     * Requires the system to be trained using the method train(List<Email> spam,List<Email> notSpam).
+     * @param email
+     * @return
+     */
     public boolean determineEmail(Email email)
     {
         return true;
     }
 
+    /**
+     * Trains the system so it can determine if an email is spam or not.
+     * @param spam
+     * @param notSpam
+     * @throws Exception
+     */
     public void train(List<Email> spam,List<Email> notSpam) throws Exception
     {
         if(spam.size()+notSpam.size()>=emailAmount) {

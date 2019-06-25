@@ -30,6 +30,11 @@ public class Authenticator
     private final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_READONLY);
     private Gmail service;
 
+    /**
+     *Log in the user with google's credentials.
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     public void logIn() throws IOException, GeneralSecurityException
     {
         // Disable warnings.
@@ -44,6 +49,9 @@ public class Authenticator
                 .build();
     }
 
+    /**
+     * Close the opened session of the app.
+     */
     public void closeSession()
     {
         // Delete token
@@ -59,6 +67,12 @@ public class Authenticator
         }
     }
 
+    /**
+     *Makes a request to google's service to use the user's credentials.
+     * @param HTTP_TRANSPORT
+     * @return Credential
+     * @throws IOException
+     */
     private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException
     {
         // Load client secrets.
@@ -80,6 +94,10 @@ public class Authenticator
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
 
+    /**
+     * Returns the gmail's service for the logged user.
+     * @return Gmail
+     */
     public Gmail getService()
     {
         return service;
