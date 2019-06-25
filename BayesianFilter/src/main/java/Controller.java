@@ -43,6 +43,11 @@ public class Controller
                     }
                 }
             }
+            else
+            {
+                // To initialize the gmail service.
+                authenticator.logIn();
+            }
             spamFilter = new SpamFilter();
             while (true)
             {
@@ -112,7 +117,7 @@ public class Controller
                         try {
                             spamFilter.train(emailLoader.getSpam(authenticator.getService()), emailLoader.getNotSpam(authenticator.getService()));
                         } catch (Exception o) {
-                            if (o.getMessage() == "Se cancelo el entrenamiento porque se necesitan mas correos para entrenar el sistema.\n") {
+                            if (o.getMessage().equals("Se cancelo el entrenamiento porque se necesitan mas correos para entrenar el sistema.\n")) {
                                 visualizer.showMessage(o.getMessage());
                             } else {
                                 if (o.getMessage().equals("www.googleapis.com")) {
