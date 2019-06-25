@@ -17,7 +17,12 @@ public class FileManager
         return null;
     }
 
-
+    /**
+     * Reads a file with the most used words of the spanish and english language to return a Hashset with them.
+     * The file most be found on the direction files/StopWords.txt
+     * The method also change the words to lower case.
+     * @return stopWords
+     */
     public HashSet<String> getStopWords()
     {
         HashSet<String> stopWords= stopWords = new HashSet<String>();
@@ -41,6 +46,11 @@ public class FileManager
         return stopWords;
     }
 
+    /**
+     * Read the file with the training.
+     * The file most be found on the direction tokens/training.dat
+     * @return wordsProbabilities
+     */
     public Map<String, WordsProbability> loadWordsProbability()
     {
         Map<String,WordsProbability> wordsProbabilities = new HashMap<String,WordsProbability>(){{}};
@@ -78,6 +88,11 @@ public class FileManager
 
     }
 
+    /**
+     * Writes or creates a file with the training.
+     * You can find the file in the direction tokens/training.dat
+     * @param wordsProbability
+     */
     public void saveWordsProbability(Map<String, WordsProbability> wordsProbability)
     {
         try {
