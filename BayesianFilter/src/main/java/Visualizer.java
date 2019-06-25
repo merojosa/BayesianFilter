@@ -44,7 +44,7 @@ public class Visualizer
      * @param spamThreshold
      * @param emailAmount
      */
-    public void showConfiguration(float spamProbability, float spamThreshold, int emailAmount)
+    public void showConfiguration(double spamProbability, double spamThreshold, int emailAmount)
     {
         System.out.println("Probabilidad de spam: "+spamProbability+"\nLimite de spam: "+spamThreshold+"\nMinimo de cantidad de correos: "+emailAmount);
     }
@@ -102,14 +102,14 @@ public class Visualizer
     }
 
     /**
-     * Reads a float from the console
-     * @return float
+     * Reads a double from the console
+     * @return double
      */
-    public Float readConsoleFloat()
+    public Double readConsoleDouble()
     {
-        float returnValue = 0;
+        double returnValue = 0;
         try {
-            returnValue = Float.valueOf(scanner.next());
+            returnValue = Double.valueOf(scanner.next());
         }
         catch(NumberFormatException e) {
             System.out.println("No se pudo realizar la oprecion porque el valor es invalido");
