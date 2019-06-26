@@ -65,6 +65,13 @@ public class Authenticator
         catch (Exception o)
         {
         }
+        try {
+            File trainingFile = new File("files/config.txt");
+            trainingFile.delete();
+        }
+        catch (Exception o)
+        {
+        }
     }
 
     /**
