@@ -12,7 +12,7 @@ import java.io.ObjectOutputStream;
 
 public class FileManager
 {
-    public List<Float> loadTrainingConfiguration()
+    public List<Double> loadTrainingConfiguration()
     {
         return null;
     }
@@ -96,7 +96,7 @@ public class FileManager
         return wordsProbabilities;
     }
 
-    public void saveTrainingData(float spamProbability, float spamThreshold, int emailAmount)
+    public void saveTrainingData(double spamProbability, double spamThreshold, int emailAmount)
     {
 
     }

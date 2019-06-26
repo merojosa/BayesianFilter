@@ -76,7 +76,7 @@ public class Authenticator
     private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException
     {
         // Load client secrets.
-        InputStream in = GmailQuickstart.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+        InputStream in = Authenticator.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
         }
@@ -101,5 +101,13 @@ public class Authenticator
     public Gmail getService()
     {
         return service;
+    }
+
+    public boolean isAuthenticated()
+    {
+        File file = new File(TOKENS_DIRECTORY_PATH + "/StoredCredential");
+
+        // If exists, the user is already authenticated.
+        return file.exists();
     }
 }
