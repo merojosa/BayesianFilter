@@ -31,7 +31,7 @@ public class Authenticator
     private Gmail service;
 
     /**
-     *Log in the user with google's credentials.
+     * Log in the user with google's credentials.
      * @throws IOException
      * @throws GeneralSecurityException
      */
@@ -45,8 +45,8 @@ public class Authenticator
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
 
         service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
-                .setApplicationName(APPLICATION_NAME)
-                .build();
+            .setApplicationName(APPLICATION_NAME)
+            .build();
     }
 
     /**
@@ -75,7 +75,7 @@ public class Authenticator
     }
 
     /**
-     *Makes a request to google's service to use the user's credentials.
+     * Makes a request to google's service to use the user's credentials.
      * @param HTTP_TRANSPORT
      * @return Credential
      * @throws IOException
@@ -110,6 +110,10 @@ public class Authenticator
         return service;
     }
 
+    /**
+     * Determines if the user is authenticated by checking the existence of StoredCredential file.
+     * @return boolean
+     */
     public boolean isAuthenticated()
     {
         File file = new File(TOKENS_DIRECTORY_PATH + "/StoredCredential");
