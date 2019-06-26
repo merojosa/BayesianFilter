@@ -2,12 +2,10 @@ import com.google.api.client.repackaged.org.apache.commons.codec.binary.Base64;
 import com.google.api.services.gmail.Gmail;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
 import com.google.api.services.gmail.model.MessagePart;
-import com.google.api.services.gmail.model.MessagePartBody;
 
 
 public class EmailLoader
@@ -111,7 +109,7 @@ public class EmailLoader
     }
 
     /**
-     * Extracts the snippet, from, body and footer.
+     * Extracts the snippet, from, and body.
      * @param service
      * @param userId
      * @param messageId

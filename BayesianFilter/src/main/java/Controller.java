@@ -2,8 +2,6 @@ import java.io.IOException;
 import java.lang.System;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Controller
 {
@@ -133,13 +131,9 @@ public class Controller
                         break;
                     }
                     // Show training data.
-                    case "3": {
-                        // ESTO ES UNA PRUEBA, HAY QUE USAR EL MAP DE SPAMFILTER.
-                        Map<String, WordsProbability> wordsProbabilityMap = new HashMap<String, WordsProbability>();
-                        wordsProbabilityMap.put("Palabra1", new WordsProbability("Palabra1", 2, 3, 0.1, 0.9));
-                        wordsProbabilityMap.put("Palabra2", new WordsProbability("Palabra2", 21, 4, 0.4, 0.6));
-
-                        visualizer.showTrainingData(wordsProbabilityMap);
+                    case "3":
+                        {
+                        visualizer.showTrainingData(spamFilter.getWordsProbabilities());
                         visualizer.showMessage("\n");
                         break;
                     }
@@ -163,8 +157,6 @@ public class Controller
                                     visualizer.showMessage(messageSpam + email.getSnippet());
                                 }
                             }
-                            visualizer.showMessage("\nSeleccione cualquier tecla para continuar.");
-                            visualizer.readConsoleString();
                         }
                         catch (Exception o) {
                             if (o.getMessage().equals("www.googleapis.com")) {

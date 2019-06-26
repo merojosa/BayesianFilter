@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +10,11 @@ public class SpamFilter
 
     private double spamProbability;
     private double spamThreshold;
+
+    // Determine.
+    private double spamProbabilities;
+    private double notSpamProbabilities;
+
     private int emailAmount;
     private Map<String, WordsProbability> wordsProbabilities;
     private FileManager fileManager;
@@ -18,7 +22,7 @@ public class SpamFilter
     public SpamFilter(){
         fileManager = new FileManager();
 
-            wordsProbabilities = fileManager.loadWordsProbability();
+            setWordsProbabilities(fileManager.loadWordsProbability());
         try
         {
             this.changeConfiguration();
@@ -39,15 +43,15 @@ public class SpamFilter
      */
     public boolean determineEmail(Email email)
     {
-        Double spamProbabilities = 0.0;
-        Double notSpamProbabilities = 0.0;
+        spamProbabilities = 1.0;
+        notSpamProbabilities = 1.0;
 
         HashSet<String> computedWords = new HashSet<String>();
 
         // Iterate through body, subject and from.
-        multiplyProbabilities(email.getBody(), spamProbabilities, notSpamProbabilities, computedWords);
-        multiplyProbabilities(email.getSubject(), spamProbabilities, notSpamProbabilities, computedWords);
-        multiplyProbabilities(email.getFrom(), spamProbabilities, notSpamProbabilities, computedWords);
+        multiplyProbabilities(email.getBody(), computedWords);
+        multiplyProbabilities(email.getSubject(), computedWords);
+        multiplyProbabilities(email.getFrom(), computedWords);
 
         double result = spamProbabilities/(spamProbabilities + notSpamProbabilities);
 
@@ -61,20 +65,30 @@ public class SpamFilter
         }
     }
 
-    private void multiplyProbabilities(String text, Double spamProbabilities, Double notSpamProbabilities, HashSet computedWords)
+    /**
+     * Multiplies all probabilities given a text
+     * The results is saved in spamProbabilities and notSpamProbabilities
+     * Requieres the training.
+     * @param text
+     * @param computedWords
+     */
+    private void multiplyProbabilities(String text, HashSet computedWords)
     {
         WordsProbability singleWord = null;
 
         // Word by word, includes letters only.
         for (String word : text.split("\\s+[^a-zA-z]*|[^a-zA-z]+\\s*"))
         {
-            // Do things only if the word exists in teh spam filter and if the words was not added
-            if(wordsProbabilities.containsKey(word) == true && computedWords.contains(word) == false)
+            // Do things only if the word exists in the spam filter and if the word was not added
+            if(getWordsProbabilities().containsKey(word) == true && computedWords.contains(word) == false)
             {
-                computedWords.add(word);
-                singleWord = wordsProbabilities.get(word);
-                spamProbabilities *= singleWord.getSpamProbability();
-                notSpamProbabilities *= singleWord.getNotSpamProbability();
+                singleWord = getWordsProbabilities().get(word);
+                if(singleWord.getSpamProbability() > 0 && singleWord.getNotSpamProbability() > 0)
+                {
+                    computedWords.add(word);
+                    spamProbabilities *= singleWord.getSpamProbability();
+                    notSpamProbabilities *= singleWord.getNotSpamProbability();
+                }
             }
         }
     }
@@ -213,5 +227,13 @@ public class SpamFilter
     public void setEmailAmount(int emailAmount) throws IOException{
         this.emailAmount = emailAmount;
         fileManager.saveTrainingData(this.spamProbability,this.spamThreshold,this.emailAmount);
+    }
+
+    public Map<String, WordsProbability> getWordsProbabilities() {
+        return wordsProbabilities;
+    }
+
+    public void setWordsProbabilities(Map<String, WordsProbability> wordsProbabilities) {
+        this.wordsProbabilities = wordsProbabilities;
     }
 }
