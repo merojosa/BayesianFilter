@@ -74,7 +74,7 @@ public class Visualizer
                     word = mapWord.getKey();
                 }
 
-                System.out.printf("| %-" + SIZE_WORD + "s| %-15s | %-13s | %-10s | %-13s |",
+                System.out.printf("| %-" + SIZE_WORD + "s| %-15d | %-13d | %-10f | %-13f |",
                         word,
                         mapWord.getValue().getTotalEmails(),
                         mapWord.getValue().getTotalSpam(),
