@@ -27,6 +27,7 @@ public class FileManager
         {
             config.add(Double.valueOf(read));
         }
+        buffer.close();
         return config;
     }
 
