@@ -21,8 +21,23 @@ public class SpamFilter
 
     public SpamFilter(){
         fileManager = new FileManager();
+        try{
+            wordsProbabilities = fileManager.loadWordsProbability();
+        }
+        catch (Exception o)
+        {
+            /*
+            if(o.getMessage()==null || o.getMessage().equals("WordsProbability cannot be cast to java.lang.String"))
+            {
+                System.out.println("Se termino cargar la informaicon del entrenamiento.\n");
+            }
+            else
+            {
+                System.out.println("No se cargo ninguna informacion sobre el entrenamiento");
+            }
+            */
 
-            setWordsProbabilities(fileManager.loadWordsProbability());
+        }
         try
         {
             this.changeConfiguration();
