@@ -45,8 +45,8 @@ public class Authenticator
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
 
         service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
-                .setApplicationName(APPLICATION_NAME)
-                .build();
+            .setApplicationName(APPLICATION_NAME)
+            .build();
     }
 
     /**

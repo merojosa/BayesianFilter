@@ -2,8 +2,6 @@ import java.io.IOException;
 import java.lang.System;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Controller
 {
@@ -159,8 +157,6 @@ public class Controller
                                     visualizer.showMessage(messageSpam + email.getSnippet());
                                 }
                             }
-                            visualizer.showMessage("\nSeleccione cualquier tecla para continuar.");
-                            visualizer.readConsoleString();
                         }
                         catch (Exception o) {
                             if (o.getMessage().equals("www.googleapis.com")) {
