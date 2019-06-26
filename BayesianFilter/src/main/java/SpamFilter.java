@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -93,7 +94,7 @@ public class SpamFilter
                 emailsText = emailsText.concat(" ");
                 emailsText = emailsText.concat(spam.get(i).getBody());
                 double total = 0;
-                String[] emailWords = emailsText.split("\\s+[^a-zA-z]*|[^a-zA-z]+\\s*");
+                String[] emailWords = emailsText.split("[^a-zA-Z'áéíóúàèìòùäëïöü]+");
                 int numWord = emailWords.length;
                 HashSet<String> countedWords = countedWords = new HashSet<String>();
                 for (int counter = 0; counter < emailWords.length; counter++) {
@@ -195,15 +196,19 @@ public class SpamFilter
         return emailAmount;
     }
 
-    public void setSpamProbability(double spamProbability) {
+    public void setSpamProbability(double spamProbability) throws IOException {
+
         this.spamProbability = spamProbability;
+        fileManager.saveTrainingData(this.spamProbability,this.spamThreshold,this.emailAmount);
     }
 
-    public void setSpamThreshold(double spamThreshold) {
+    public void setSpamThreshold(double spamThreshold) throws IOException{
         this.spamThreshold = spamThreshold;
+        fileManager.saveTrainingData(this.spamProbability,this.spamThreshold,this.emailAmount);
     }
 
-    public void setEmailAmount(int emailAmount) {
+    public void setEmailAmount(int emailAmount) throws IOException{
         this.emailAmount = emailAmount;
+        fileManager.saveTrainingData(this.spamProbability,this.spamThreshold,this.emailAmount);
     }
 }
