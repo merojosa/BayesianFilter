@@ -73,6 +73,7 @@ public class EmailLoader
         }
         catch (Exception o)
         {
+            System.out.println("Hubo un problema al obtener los correos de no spam.");
             return null;
         }
     }

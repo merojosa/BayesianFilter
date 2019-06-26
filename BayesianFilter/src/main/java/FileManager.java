@@ -23,8 +23,7 @@ public class FileManager
         File configFile = new File("files/config.txt");
         BufferedReader buffer = new BufferedReader(new FileReader(configFile));
         String read;
-        while ((read = buffer.readLine()) != null)
-        {
+        while ((read = buffer.readLine()) != null) {
             config.add(Double.valueOf(read));
         }
         buffer.close();
@@ -50,7 +49,7 @@ public class FileManager
             {
                 stopWords.add(line.toLowerCase());
             }
-
+            fileReader.close();
             bufferedReader.close();
         }
         catch (IOException e)
@@ -65,11 +64,9 @@ public class FileManager
      * The file most be found on the direction tokens/training.dat
      * @return wordsProbabilities
      */
-    public Map<String, WordsProbability> loadWordsProbability()
+    public Map<String, WordsProbability> loadWordsProbability() throws Exception
     {
         Map<String,WordsProbability> wordsProbabilities = new HashMap<String,WordsProbability>(){{}};
-        try
-        {
             FileInputStream file = new FileInputStream("tokens/training.dat");
             ObjectInputStream is = new ObjectInputStream(file);
             Object objectReaded = null;
@@ -85,31 +82,18 @@ public class FileManager
                 }
                 if(!read) {
                     String key = (String) objectReaded;
-
                     objectReaded = is.readObject();
                     WordsProbability currentWord = (WordsProbability) objectReaded;
-
                     wordsProbabilities.put(key, currentWord);
                     /*
                     System.out.println("Palabra " + currentWord.getWord());
                     System.out.println("proba spam : " + currentWord.getSpamProbability());
                     System.out.println("proba notspam : " + currentWord.getNotSpamProbability() + "\n");
                     */
-
                 }
             }
-        }
-        catch (Exception o)
-        {
-            if(o.getMessage()==null || o.getMessage().equals("WordsProbability cannot be cast to java.lang.String"))
-            {
-                System.out.println("Se termino de leer el archivo.\n");
-            }
-            else
-                {
-                System.out.println("No se pudo abir el archivo");
-                }
-        }
+            is.close();
+            file.close();
         return wordsProbabilities;
     }
 
@@ -145,6 +129,7 @@ public class FileManager
                 os.writeObject(actualWord.getValue());
             }
             file.close();
+            os.close();
         }
         catch (Exception o)
         {
