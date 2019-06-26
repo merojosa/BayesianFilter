@@ -54,6 +54,14 @@ public class SpamFilter
         }
     }
 
+    /**
+     * Multiplies all probabilities given a text
+     * Requieres the training.
+     * @param text
+     * @param spamProbabilities
+     * @param notSpamProbabilities
+     * @param computedWords
+     */
     private void multiplyProbabilities(String text, Double spamProbabilities, Double notSpamProbabilities, HashSet computedWords)
     {
         WordsProbability singleWord = null;

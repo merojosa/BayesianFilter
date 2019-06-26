@@ -111,7 +111,7 @@ public class EmailLoader
     }
 
     /**
-     * Extracts the snippet, from, body and footer.
+     * Extracts the snippet, from, and body.
      * @param service
      * @param userId
      * @param messageId
