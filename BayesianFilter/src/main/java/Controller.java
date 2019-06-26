@@ -48,7 +48,10 @@ public class Controller
                 // To initialize the gmail service.
                 authenticator.logIn();
             }
-            spamFilter = new SpamFilter();
+            try {
+                spamFilter = new SpamFilter();
+            }
+            catch (Exception o){}
             while (true)
             {
                 visualizer.showMainMenu();
