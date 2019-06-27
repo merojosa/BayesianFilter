@@ -11,14 +11,21 @@ public class Controller
     private Visualizer visualizer;
     private EmailLoader emailLoader;
     private SpamFilter spamFilter;
+    private FileManager fileManager;
 
     public Controller()
     {
         authenticator = new Authenticator();
         visualizer = new Visualizer();
         emailLoader = new EmailLoader();
+        fileManager = new FileManager();
     }
 
+    /**
+     * Starts the program.
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     public void start() throws IOException, GeneralSecurityException
     {
         boolean goBack = false;
@@ -174,8 +181,7 @@ public class Controller
                     // Get unread messages.
                     case "4":
                     {
-                        File file = new File("tokens/training.dat");
-                        if(file.exists())
+                        if(fileManager.fileExists("tokens/training.dat"))
                         {
                             visualizer.showMessage("Obteniendo correos nuevos...\n");
                             // Iterate through all unread messages.

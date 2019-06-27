@@ -22,7 +22,8 @@ public class SpamFilter
     public SpamFilter()
     {
         fileManager = new FileManager();
-        try{
+        try
+        {
             wordsProbabilities = fileManager.loadWordsProbability();
         }
         catch (Exception o)
