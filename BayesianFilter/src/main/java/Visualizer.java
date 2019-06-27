@@ -1,5 +1,6 @@
 import java.util.Map;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 public class Visualizer
 {
@@ -105,32 +106,18 @@ public class Visualizer
      * Reads a double from the console
      * @return double
      */
-    public Double readConsoleDouble()
+    public Double readConsoleDouble() throws Exception
     {
-        double returnValue = 0;
-        try {
-            returnValue = Double.valueOf(scanner.next());
-        }
-        catch(NumberFormatException e) {
-            System.out.println("No se pudo realizar la oprecion porque el valor es invalido");
-        }
-        return returnValue;
+        return Double.valueOf(scanner.next());
     }
 
     /**
      * Reads an Int from the console
      * @return int
      */
-    public int readConsonleInt()
+    public int readConsonleInt() throws Exception
     {
-        int returnValue = 0;
-        try {
-            returnValue = Integer.valueOf(scanner.next());
-        }
-        catch(NumberFormatException e) {
-            System.out.println("No se pudo realizar la oprecion porque el valor es invalido");
-        }
-        return returnValue;
+        return Integer.valueOf(scanner.next());
     }
 
     /**

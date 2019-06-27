@@ -63,25 +63,39 @@ public class Controller
                                 case "cambiar probabilidad de 'spam'":
                                 case "probabilidad":
                                     visualizer.showMessage("Ingrese el nuevo valor de la probabilidad");
-                                    double probability = visualizer.readConsoleDouble();
-                                    while (!(probability >= 0 && probability <= 1)) {
-                                        visualizer.showMessage("Ingrese un valor entre 0 y 1");
-                                        probability = visualizer.readConsoleDouble();
+                                    try {
+                                        double probability = visualizer.readConsoleDouble();
+                                        while (!(probability >= 0 && probability <= 1)) {
+                                            visualizer.showMessage("Ingrese un valor entre 0 y 1");
+                                            probability = visualizer.readConsoleDouble();
+                                        }
+                                        spamFilter.setSpamProbability(probability);
+                                        visualizer.showMessage("Se guardo el valor");
                                     }
-                                    spamFilter.setSpamProbability(probability);
-                                    visualizer.showMessage("El valor fue guardado");
+                                    catch (Exception o)
+                                    {
+                                        visualizer.showMessage("No se pudo realizar la operacion porque el valor es invalido");
+                                    }
                                     break;
                                 case "2":
                                 case "cambiar 'spam threshold":
                                 case "limite":
                                 case "threshold":
                                     visualizer.showMessage("Ingrese el nuevo valor del threshold");
+                                    try {
                                     double threshold = visualizer.readConsoleDouble();
                                     while (!(threshold >= 0 && threshold <= 1)) {
                                         visualizer.showMessage("Ingrese un valor entre 0 y 1");
                                         threshold = visualizer.readConsoleDouble();
                                     }
-                                    spamFilter.setSpamThreshold(threshold);
+
+                                        spamFilter.setSpamThreshold(threshold);
+                                        visualizer.showMessage("Se guardo el valor");
+                                    }
+                                    catch(Exception o)
+                                    {
+                                        visualizer.showMessage("No se pudo realizar la operacion porque el valor es invalido");
+                                    }
                                     break;
                                 case "3":
                                 case "Cambiar el tamanio del conjunto de entrenamiento":
@@ -90,12 +104,20 @@ public class Controller
                                 case "conjunto:":
                                 case "entrenamiento":
                                     visualizer.showMessage("Ingrese el nuevo valor del tamanio");
+                                    try {
                                     int size = visualizer.readConsonleInt();
                                     while (size < 0) {
                                         visualizer.showMessage("Ingrese un numero mayor a 0");
                                         size = visualizer.readConsonleInt();
                                     }
-                                    spamFilter.setEmailAmount(size);
+
+                                        spamFilter.setEmailAmount(size);
+                                        visualizer.showMessage("Se guardo el valor");
+                                    }
+                                    catch (Exception o)
+                                    {
+                                        visualizer.showMessage("No se pudo realizar la oprecion porque el valor es invalido");
+                                    }
                                     break;
                                 case "4":
                                 case "mostrar configuracion":
