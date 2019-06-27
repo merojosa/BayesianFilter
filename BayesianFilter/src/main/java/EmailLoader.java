@@ -2,12 +2,10 @@ import com.google.api.client.repackaged.org.apache.commons.codec.binary.Base64;
 import com.google.api.services.gmail.Gmail;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
 import com.google.api.services.gmail.model.MessagePart;
-import com.google.api.services.gmail.model.MessagePartBody;
 
 
 public class EmailLoader
@@ -21,21 +19,15 @@ public class EmailLoader
     }
 
     /**
-     * Gets the emails in the spam board.
+     * Calls getEmails with the query "is:spam" to get spam emails.
      * @param service
      * @return ArrayList<Email>
      */
     public List<Email> getSpam(Gmail service)
     {
-        try {
-            ListMessagesResponse spamlist = service.users().messages().list(USER_ID).setQ("is:spam").execute();
-            List<Message> messages = spamlist.getMessages();
-            ArrayList<Email> spamList = new ArrayList<>();
-            for(int i = 0; i < messages.size();i++)
-            {
-                spamList.add(this.getEmail(service,USER_ID,messages.get(i).getId()));
-            }
-            return spamList;
+        try
+        {
+            return getEmails(service, "is:spam");
         }
         catch (Exception o)
         {
@@ -45,52 +37,56 @@ public class EmailLoader
     }
 
     /**
-     * Gets the emails in the inbox.
+     * Calls getEmails with the query "is:inbox" to get the inbox emails.
      * @param service
-     * @return  ArrayList<Email>
+     * @return ArrayList<Email>
      */
     public List<Email> getNotSpam(Gmail service)
     {
-        try {
-            Gmail.Users.Messages.List request = service.users().messages().list(USER_ID);
-            request.setQ("is:inbox");
-            ListMessagesResponse listMessagesResponse = request.execute();
-
-            // Get unread messages.
-            List<Message> unreadMessagesApi = listMessagesResponse.getMessages();
-            ArrayList<Email> emailsList = new ArrayList<>();
-
-            if (unreadMessagesApi == null) {
-                return emailsList;
-            } else {
-                Email email;
-                for (Message message : unreadMessagesApi) {
-                    email = getEmail(service, USER_ID, message.getId());
-                    emailsList.add(email);
-                }
-                return emailsList;
-            }
-        }
-        catch (Exception o)
+        try
         {
+            return getEmails(service, "is:inbox");
+        }
+        catch (Exception e)
+        {
+            System.out.println("Hubo un problema al obtener los correos de no spam.");
             return null;
         }
     }
 
     /**
-     * Gets the unread emails
+     * Calls getEmails with the query "is:unread" to get unread emails.
      * @param service
      * @return  ArrayList<Email>
      * @throws IOException
      */
     public ArrayList<Email> getUnreadEmail(Gmail service)  throws IOException
     {
+        try
+        {
+            return  getEmails(service, "is:unread");
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+    }
+
+    /**
+     * Gets a list of emails acording the given query.
+     * @param service
+     * @param emailQuery
+     * @return ArrayList<Email>
+     * @throws IOException
+     */
+    private ArrayList<Email> getEmails(Gmail service, String emailQuery) throws IOException
+    {
         // Make a request to recieve unread messages.
         Gmail.Users.Messages.List request = service.users().messages().list(USER_ID);
-        request.setQ("is:unread");
+        request.setQ(emailQuery);
         ListMessagesResponse listMessagesResponse = request.execute();
 
-        // Get unread messages.
+        // Get emails acording the email type.
         List<Message> unreadMessagesApi = listMessagesResponse.getMessages();
         ArrayList<Email> emailsList = new ArrayList<>();
 
@@ -103,7 +99,7 @@ public class EmailLoader
             Email email;
             for (Message message : unreadMessagesApi)
             {
-                email = getEmail(service, USER_ID, message.getId());
+                email = getWholeEmail(service, USER_ID, message.getId());
                 emailsList.add(email);
             }
             return emailsList;
@@ -111,14 +107,14 @@ public class EmailLoader
     }
 
     /**
-     * Extracts the snippet, from, body and footer.
+     * Extracts the snippet, from, and body.
      * @param service
      * @param userId
      * @param messageId
      * @return Email
      * @throws IOException
      */
-    private Email getEmail(Gmail service, String userId, String messageId)
+    private Email getWholeEmail(Gmail service, String userId, String messageId)
             throws IOException
     {
         Message message = service.users().messages().get(userId, messageId).execute();
@@ -172,7 +168,6 @@ public class EmailLoader
             }
             ++count;
         }
-
         return email;
     }
 }

@@ -1,9 +1,9 @@
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.System;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Controller
 {
@@ -49,6 +49,7 @@ public class Controller
                 authenticator.logIn();
             }
             spamFilter = new SpamFilter();
+
             while (true)
             {
                 visualizer.showMainMenu();
@@ -56,24 +57,35 @@ public class Controller
                 {
                     // Configuration
                     case "1":
-                    case "configurar": {
+                    case "configurar":
+                    {
                         visualizer.showConfigurationMenu();
-                        while (!goBack) {
-                            switch (visualizer.readConsoleString()) {
+                        while (!goBack)
+                        {
+                            switch (visualizer.readConsoleString())
+                            {
                                 case "1":
                                 case "cambiar probabilidad de 'spam'":
                                 case "probabilidad":
-                                    visualizer.showMessage("Ingrese el nuevo valor de la probabilidad");
-                                    double probability = visualizer.readConsoleDouble();
-                                    while (!(probability >= 0 && probability <= 1)) {
-                                        visualizer.showMessage("Ingrese un valor entre 0 y 1");
-                                        probability = visualizer.readConsoleDouble();
+                                    try
+                                    {
+                                        visualizer.showMessage("Ingrese el nuevo valor de la probabilidad");
+                                        double probability = visualizer.readConsoleDouble();
+                                        while (!(probability >= 0 && probability <= 1))
+                                        {
+                                            visualizer.showMessage("Ingrese un valor entre 0 y 1");
+                                            probability = visualizer.readConsoleDouble();
+                                        }
+                                        spamFilter.setSpamProbability(probability);
+                                        visualizer.showMessage("El valor fue guardado");
                                     }
-                                    spamFilter.setSpamProbability(probability);
-                                    visualizer.showMessage("El valor fue guardado");
+                                    catch (Exception e)
+                                    {
+                                        visualizer.showMessage("No se pudo leer correctamente el valor ingresado.");
+                                    }
                                     break;
                                 case "2":
-                                case "cambiar 'spam threshold":
+                                case "cambiar 'spam' threshold":
                                 case "limite":
                                 case "threshold":
                                     visualizer.showMessage("Ingrese el nuevo valor del threshold");
@@ -112,17 +124,26 @@ public class Controller
                         break;
                     }
                     // Train
-                    case "2": {
+                    case "2":
+                    {
                         visualizer.showMessage("Entrenando el sistema...\n");
-                        try {
+                        try
+                        {
                             spamFilter.train(emailLoader.getSpam(authenticator.getService()), emailLoader.getNotSpam(authenticator.getService()));
-                        } catch (Exception o) {
-                            if (o.getMessage().equals("Se cancelo el entrenamiento porque se necesitan mas correos para entrenar el sistema.\n")) {
+                        }
+                        catch (Exception o)
+                        {
+                            if (o.getMessage().equals("Se cancelo el entrenamiento porque se necesitan mas correos para entrenar el sistema.\n"))
+                            {
                                 visualizer.showMessage(o.getMessage());
-                            } else {
-                                if (o.getMessage().equals("www.googleapis.com")) {
+                            }
+                            else
+                            {
+                                if (o.getMessage().equals("www.googleapis.com"))
+                                {
                                     visualizer.showMessage("No se pudo establecer la conexion con el servidor de google.");
-                                } else {
+                                } else
+                                {
                                     visualizer.showMessage("Ocurrio un error y no se pudo entrenar el sistema.\n");
                                 }
                             }
@@ -130,45 +151,53 @@ public class Controller
                         break;
                     }
                     // Show training data.
-                    case "3": {
-                        // ESTO ES UNA PRUEBA, HAY QUE USAR EL MAP DE SPAMFILTER.
-                        Map<String, WordsProbability> wordsProbabilityMap = new HashMap<String, WordsProbability>();
-                        wordsProbabilityMap.put("Palabra1", new WordsProbability("Palabra1", 2, 3, 0.1, 0.9));
-                        wordsProbabilityMap.put("Palabra2", new WordsProbability("Palabra2", 21, 4, 0.4, 0.6));
-
-                        visualizer.showTrainingData(wordsProbabilityMap);
+                    case "3":
+                    {
+                        visualizer.showTrainingData(spamFilter.getWordsProbabilities());
                         visualizer.showMessage("\n");
                         break;
                     }
                     // Get unread messages.
-                    case "4": {
-                        visualizer.showMessage("Obteniendo correos nuevos...\n");
-                        // Iterate through all unread messages.
-                        try {
-                            unreadEmails = emailLoader.getUnreadEmail(authenticator.getService());
+                    case "4":
+                    {
+                        File file = new File("tokens/training.dat");
+                        if(file.exists())
+                        {
+                            visualizer.showMessage("Obteniendo correos nuevos...\n");
+                            // Iterate through all unread messages.
+                            try
+                            {
+                                unreadEmails = emailLoader.getUnreadEmail(authenticator.getService());
 
-                            if (unreadEmails.isEmpty()) {
-                                visualizer.showMessage("No hay correos nuevos.");
-                            } else {
-                                for (Email email : unreadEmails) {
-                                    // Print snippet and whether is spam or not (calling spam filter).
-                                    if (spamFilter.determineEmail(email)) {
-                                        messageSpam = "[SPAM] ";
-                                    } else {
-                                        messageSpam = "[NOT SPAM] ";
+                                if (unreadEmails.isEmpty())
+                                {
+                                    visualizer.showMessage("No hay correos nuevos.");
+                                }
+                                else
+                                {
+                                    for (Email email : unreadEmails)
+                                    {
+                                        // Print snippet and whether is spam or not (calling spam filter).
+                                        if (spamFilter.determineEmail(email))
+                                        {
+                                            messageSpam = "[SPAM] ";
+                                        }
+                                        else
+                                        {
+                                            messageSpam = "[NOT SPAM] ";
+                                        }
+                                        visualizer.showMessage(messageSpam + email.getSnippet());
                                     }
-                                    visualizer.showMessage(messageSpam + email.getSnippet());
                                 }
                             }
-                            visualizer.showMessage("\nSeleccione cualquier tecla para continuar.");
-                            visualizer.readConsoleString();
-                        }
-                        catch (Exception o) {
-                            if (o.getMessage().equals("www.googleapis.com")) {
-                                visualizer.showMessage("No se pudo establecer la conexion con el servidor de google.");
-                            } else {
+                            catch (Exception o)
+                            {
                                 visualizer.showMessage("Hubo un problema al obtener correos.");
                             }
+                        }
+                        else
+                        {
+                            visualizer.showMessage("Necesita entrenar antes de determinar si un correo es spam o no.");
                         }
                         break;
                     }
