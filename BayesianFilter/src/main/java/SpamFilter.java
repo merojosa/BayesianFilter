@@ -19,7 +19,8 @@ public class SpamFilter
     private Map<String, WordsProbability> wordsProbabilities;
     private FileManager fileManager;
 
-    public SpamFilter(){
+    public SpamFilter()
+    {
         fileManager = new FileManager();
         try{
             wordsProbabilities = fileManager.loadWordsProbability();
@@ -68,7 +69,8 @@ public class SpamFilter
         multiplyProbabilities(email.getSubject(), computedWords);
         multiplyProbabilities(email.getFrom(), computedWords);
 
-        double result = spamProbabilities/(spamProbabilities + notSpamProbabilities);
+        double result = (spamProbabilities * spamProbability) /
+                ((spamProbabilities * spamProbability) + (notSpamProbabilities *  (1.0 - spamProbability)));
 
         if(result < spamThreshold)  // If it is less than the threshold, is not spam.
         {

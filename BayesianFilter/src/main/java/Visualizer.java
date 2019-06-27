@@ -105,16 +105,9 @@ public class Visualizer
      * Reads a double from the console
      * @return double
      */
-    public Double readConsoleDouble()
+    public Double readConsoleDouble() throws NumberFormatException
     {
-        double returnValue = 0;
-        try {
-            returnValue = Double.valueOf(scanner.next());
-        }
-        catch(NumberFormatException e) {
-            System.out.println("No se pudo realizar la oprecion porque el valor es invalido");
-        }
-        return returnValue;
+        return Double.valueOf(scanner.next());
     }
 
     /**
