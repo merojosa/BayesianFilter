@@ -23,6 +23,14 @@ public class WordsProbability  implements Serializable
 
     private double notSpamProbability;
 
+    /**
+     * Constructor of the class WordsProbability
+     * @param word
+     * @param totalSpam
+     * @param totalEmails
+     * @param spamProbability
+     * @param notSpamProbability
+     */
     public WordsProbability(String word, int totalSpam, int totalEmails, double spamProbability, double notSpamProbability)
     {
         this.word = word;
@@ -32,6 +40,9 @@ public class WordsProbability  implements Serializable
         this.notSpamProbability = notSpamProbability;
     }
 
+    /**
+     * Empty constructor of the class WordsProbability
+     */
     public WordsProbability()
     {
         this.totalSpam = 0;

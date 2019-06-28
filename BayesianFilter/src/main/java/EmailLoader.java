@@ -13,6 +13,9 @@ public class EmailLoader
     private HtmlParser htmlParser;
     private final String USER_ID = "me";
 
+    /**
+     * Constructor of the class EmailLoader. Initializes HtmlParser
+     */
     public EmailLoader()
     {
         htmlParser = new HtmlParser();

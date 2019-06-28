@@ -19,8 +19,11 @@ public class SpamFilter
     private Map<String, WordsProbability> wordsProbabilities;
     private FileManager fileManager;
 
-    public SpamFilter()
-    {
+
+    /**
+     * Constructor of the class SpamFilter. Loads the traning.
+     */
+    public SpamFilter(){
         fileManager = new FileManager();
         try
         {
@@ -211,6 +214,10 @@ public class SpamFilter
         else{throw new Exception("Se cancelo el entrenamiento porque se necesitan mas correos para entrenar el sistema");}
     }
 
+    /**
+     * Changes the default configuration with the configuration loaded from the user's file.
+     * @throws IOException
+     */
     public void changeConfiguration() throws IOException
     {
         ArrayList<Double> config =  fileManager.loadTrainingConfiguration();
