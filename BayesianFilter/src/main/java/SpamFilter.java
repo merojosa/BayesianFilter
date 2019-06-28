@@ -32,17 +32,6 @@ public class SpamFilter
         catch (Exception o)
         {
             wordsProbabilities = new HashMap<String, WordsProbability>();
-            /*
-            if(o.getMessage()==null || o.getMessage().equals("WordsProbability cannot be cast to java.lang.String"))
-            {
-                System.out.println("Se termino cargar la informaicon del entrenamiento.\n");
-            }
-            else
-            {
-                System.out.println("No se cargo ninguna informacion sobre el entrenamiento");
-            }
-            */
-
         }
         try
         {
@@ -99,7 +88,7 @@ public class SpamFilter
         WordsProbability singleWord = null;
 
         // Word by word, includes letters only.
-        for (String word : text.split("\\s+[^a-zA-z]*|[^a-zA-z]+\\s*"))
+        for (String word : text.split("[^a-zA-Z'áéíóúàèìòùäëïöü]+"))
         {
             // Do things only if the word exists in the spam filter and if the word was not added
             if(wordsProbabilities.containsKey(word) == true && computedWords.contains(word) == false)
@@ -263,7 +252,7 @@ public class SpamFilter
 
     public boolean isTrained()
     {
-        if(fileManager.fileExists("tokens/training.dat") == true && wordsProbabilities != null)
+        if(fileManager.fileExists("tokens/training.dat") == true)
         {
             return true;
         }
