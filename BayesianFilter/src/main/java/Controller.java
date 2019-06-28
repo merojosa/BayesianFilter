@@ -32,12 +32,15 @@ public class Controller
      */
     public void start() throws IOException, GeneralSecurityException
     {
-        boolean goBack = false;
+        boolean goBack;
+        boolean continueLoop;
         String messageSpam = "";
         ArrayList<Email> unreadEmails;
 
         while(true)
         {
+            continueLoop = true;
+            goBack = false;
             if(authenticator.isAuthenticated() == false)
             {
                 // If the user is not authenticated, it will show the start app interface.
@@ -61,7 +64,7 @@ public class Controller
             }
             spamFilter = new SpamFilter();
 
-            while (true)
+            while (continueLoop)
             {
                 visualizer.showMainMenu();
                 switch (visualizer.readConsoleString())
@@ -99,11 +102,11 @@ public class Controller
                                 case "threshold":
                                     visualizer.showMessage("Ingrese el nuevo valor del threshold");
                                     try {
-                                    double threshold = visualizer.readConsoleDouble();
-                                    while (!(threshold >= 0 && threshold <= 1)) {
-                                        visualizer.showMessage("Ingrese un valor entre 0 y 1");
-                                        threshold = visualizer.readConsoleDouble();
-                                    }
+                                        double threshold = visualizer.readConsoleDouble();
+                                        while (!(threshold >= 0 && threshold <= 1)) {
+                                            visualizer.showMessage("Ingrese un valor entre 0 y 1");
+                                            threshold = visualizer.readConsoleDouble();
+                                        }
 
                                         spamFilter.setSpamThreshold(threshold);
                                         visualizer.showMessage("Se guardo el valor");
@@ -114,18 +117,18 @@ public class Controller
                                     }
                                     break;
                                 case "3":
-                                case "Cambiar el tamanio del conjunto de entrenamiento":
+                                case "Cambiar el tamaño del conjunto de entrenamiento":
                                 case "tamanio":
                                 case "tamaño":
                                 case "conjunto:":
                                 case "entrenamiento":
-                                    visualizer.showMessage("Ingrese el nuevo valor del tamanio");
+                                    visualizer.showMessage("Ingrese el nuevo valor del tamaño");
                                     try {
-                                    int size = visualizer.readConsonleInt();
-                                    while (size < 0) {
-                                        visualizer.showMessage("Ingrese un numero mayor a 0");
-                                        size = visualizer.readConsonleInt();
-                                    }
+                                        int size = visualizer.readConsonleInt();
+                                        while (size < 0) {
+                                            visualizer.showMessage("Ingrese un numero mayor a 0");
+                                            size = visualizer.readConsonleInt();
+                                        }
 
                                         spamFilter.setEmailAmount(size);
                                         visualizer.showMessage("Se guardo el valor");
@@ -141,11 +144,11 @@ public class Controller
                                     break;
                                 case "5":
                                 case "regresar":
-                                    visualizer.showMainMenu();
                                     goBack = true;
                                     break;
                             }
                         }
+                        goBack = false;
                         break;
                     }
                     // Train
@@ -178,14 +181,21 @@ public class Controller
                     // Show training data.
                     case "3":
                     {
-                        visualizer.showTrainingData(spamFilter.getWordsProbabilities());
-                        visualizer.showMessage("\n");
+                        if(spamFilter.isTrained() == true)
+                        {
+                            visualizer.showTrainingData(spamFilter.getWordsProbabilities());
+                        }
+                        else
+                        {
+                            visualizer.showMessage("Entrenamiento necesario");
+                        }
+
                         break;
                     }
                     // Get unread messages.
                     case "4":
                     {
-                        if(fileManager.fileExists("tokens/training.dat"))
+                        if(spamFilter.isTrained() == true)
                         {
                             visualizer.showMessage("Obteniendo correos nuevos...\n");
                             // Iterate through all unread messages.
@@ -221,7 +231,7 @@ public class Controller
                         }
                         else
                         {
-                            visualizer.showMessage("Necesita entrenar antes de determinar si un correo es spam o no.");
+                            visualizer.showMessage("Entrenamiento necesario");
                         }
                         break;
                     }
@@ -229,8 +239,7 @@ public class Controller
                     case "5":
                     {
                         authenticator.closeSession();
-                        start();
-                        System.exit(0);
+                        continueLoop = false;
                         break;
                     }
                     // Exit.
