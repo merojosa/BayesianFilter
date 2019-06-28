@@ -19,12 +19,14 @@ public class SpamFilter
     private Map<String, WordsProbability> wordsProbabilities;
     private FileManager fileManager;
 
+
     /**
      * Constructor of the class SpamFilter. Loads the traning.
      */
     public SpamFilter(){
         fileManager = new FileManager();
-        try{
+        try
+        {
             wordsProbabilities = fileManager.loadWordsProbability();
         }
         catch (Exception o)
@@ -72,7 +74,8 @@ public class SpamFilter
         multiplyProbabilities(email.getSubject(), computedWords);
         multiplyProbabilities(email.getFrom(), computedWords);
 
-        double result = spamProbabilities/(spamProbabilities + notSpamProbabilities);
+        double result = spamProbabilities /
+                (spamProbabilities + notSpamProbabilities);
 
         if(result < spamThreshold)  // If it is less than the threshold, is not spam.
         {
@@ -99,14 +102,14 @@ public class SpamFilter
         for (String word : text.split("\\s+[^a-zA-z]*|[^a-zA-z]+\\s*"))
         {
             // Do things only if the word exists in the spam filter and if the word was not added
-            if(getWordsProbabilities().containsKey(word) == true && computedWords.contains(word) == false)
+            if(wordsProbabilities.containsKey(word) == true && computedWords.contains(word) == false)
             {
                 singleWord = getWordsProbabilities().get(word);
                 if(singleWord.getSpamProbability() > 0 && singleWord.getNotSpamProbability() > 0)
                 {
                     computedWords.add(word);
-                    spamProbabilities *= singleWord.getSpamProbability();
-                    notSpamProbabilities *= singleWord.getNotSpamProbability();
+                    spamProbabilities *= singleWord.getSpamProbability() * spamProbability;
+                    notSpamProbabilities *= singleWord.getNotSpamProbability() * (1 - spamProbability);
                 }
             }
         }
@@ -256,5 +259,17 @@ public class SpamFilter
 
     public void setWordsProbabilities(Map<String, WordsProbability> wordsProbabilities) {
         this.wordsProbabilities = wordsProbabilities;
+    }
+
+    public boolean isTrained()
+    {
+        if(fileManager.fileExists("tokens/training.dat") == true && wordsProbabilities != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

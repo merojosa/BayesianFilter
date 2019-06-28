@@ -84,7 +84,8 @@ public class FileManager
             boolean read = false;
             while (!read)
             {
-                try {
+                try
+                {
                     objectReaded = is.readObject();
                 }
                 catch(Exception o)
@@ -129,8 +130,6 @@ public class FileManager
     }
 
 
-
-
     /**
      * Writes or creates a file with the training.
      * You can find the file in the direction tokens/training.dat
@@ -153,5 +152,11 @@ public class FileManager
         {
             System.out.println("Hubo un problema al guardar los datos del entrenamiento.");
         }
+    }
+
+    public boolean fileExists(String path)
+    {
+        File file = new File(path);
+        return file.exists();
     }
 }
