@@ -101,7 +101,7 @@ public class SpamFilter
         for (String word : text.split("\\s+[^a-zA-z]*|[^a-zA-z]+\\s*"))
         {
             // Do things only if the word exists in the spam filter and if the word was not added
-            if(getWordsProbabilities().containsKey(word) == true && computedWords.contains(word) == false)
+            if(wordsProbabilities.containsKey(word) == true && computedWords.contains(word) == false)
             {
                 singleWord = getWordsProbabilities().get(word);
                 if(singleWord.getSpamProbability() > 0 && singleWord.getNotSpamProbability() > 0)
@@ -260,5 +260,17 @@ public class SpamFilter
 
     public void setWordsProbabilities(Map<String, WordsProbability> wordsProbabilities) {
         this.wordsProbabilities = wordsProbabilities;
+    }
+
+    public boolean isTrained()
+    {
+        if(fileManager.fileExists("tokens/training.dat") == true && wordsProbabilities != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
