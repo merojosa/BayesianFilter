@@ -25,7 +25,7 @@ public class FileManager
 
     /**
      * Reads the configuration of the application from a file
-     * @return
+     * @return config
      * @throws IOException
      */
     public ArrayList<Double> loadTrainingConfiguration() throws IOException
