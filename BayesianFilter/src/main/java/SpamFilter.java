@@ -73,8 +73,8 @@ public class SpamFilter
         multiplyProbabilities(email.getSubject(), computedWords);
         multiplyProbabilities(email.getFrom(), computedWords);
 
-        double result = (spamProbabilities * spamProbability) /
-                ((spamProbabilities * spamProbability) + (notSpamProbabilities *  (1.0 - spamProbability)));
+        double result = spamProbabilities /
+                (spamProbabilities + notSpamProbabilities);
 
         if(result < spamThreshold)  // If it is less than the threshold, is not spam.
         {
@@ -107,8 +107,8 @@ public class SpamFilter
                 if(singleWord.getSpamProbability() > 0 && singleWord.getNotSpamProbability() > 0)
                 {
                     computedWords.add(word);
-                    spamProbabilities *= singleWord.getSpamProbability();
-                    notSpamProbabilities *= singleWord.getNotSpamProbability();
+                    spamProbabilities *= singleWord.getSpamProbability() * spamProbability;
+                    notSpamProbabilities *= singleWord.getNotSpamProbability() * (1 - spamProbability);
                 }
             }
         }

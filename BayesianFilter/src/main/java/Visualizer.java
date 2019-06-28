@@ -63,24 +63,27 @@ public class Visualizer
             String word = "";
             for (Map.Entry<String, WordsProbability> mapWord : wordsProbabilities.entrySet())
             {
-                System.out.println("\n----------------------------------------------------------------------------------");
-
-                // If the lenght word is bigger than SIZE_WORD, cut it.
-                if(mapWord.getKey().length() > SIZE_WORD)
+                if(mapWord.getValue().getSpamProbability() > 0 && mapWord.getValue().getNotSpamProbability() > 0)
                 {
-                    word = mapWord.getKey().substring(0, SIZE_WORD - 1);
-                }
-                else
-                {
-                    word = mapWord.getKey();
-                }
+                    System.out.println("\n----------------------------------------------------------------------------------");
 
-                System.out.printf("| %-" + SIZE_WORD + "s| %-15d | %-13d | %-10f | %-13f |",
-                        word,
-                        mapWord.getValue().getTotalEmails(),
-                        mapWord.getValue().getTotalSpam(),
-                        mapWord.getValue().getSpamProbability(),
-                        mapWord.getValue().getNotSpamProbability());
+                    // If the lenght word is bigger than SIZE_WORD, cut it.
+                    if(mapWord.getKey().length() > SIZE_WORD)
+                    {
+                        word = mapWord.getKey().substring(0, SIZE_WORD - 1);
+                    }
+                    else
+                    {
+                        word = mapWord.getKey();
+                    }
+
+                    System.out.printf("| %-" + SIZE_WORD + "s| %-15d | %-13d | %-10f | %-13f |",
+                            word,
+                            mapWord.getValue().getTotalEmails(),
+                            mapWord.getValue().getTotalSpam(),
+                            mapWord.getValue().getSpamProbability(),
+                            mapWord.getValue().getNotSpamProbability());
+                }
 
             }
             System.out.println("\n----------------------------------------------------------------------------------");
