@@ -10,6 +10,9 @@ public class Controller
     private EmailLoader emailLoader;
     private SpamFilter spamFilter;
 
+    /**
+     * Constructor of the controller, initializes authenticator, visualizer and emailLoader
+     */
     public Controller()
     {
         authenticator = new Authenticator();
@@ -17,6 +20,11 @@ public class Controller
         emailLoader = new EmailLoader();
     }
 
+    /**
+     * Main method of the controller who constructs other classes and call their methods.
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
     public void start() throws IOException, GeneralSecurityException
     {
         boolean goBack = false;
