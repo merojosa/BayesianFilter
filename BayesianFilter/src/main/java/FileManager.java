@@ -16,6 +16,18 @@ import java.util.ArrayList;
 
 public class FileManager
 {
+
+    /**
+     * Empty constructor of the class FileManager
+     */
+    public FileManager() {
+    }
+
+    /**
+     * Reads the configuration of the application from a file
+     * @return
+     * @throws IOException
+     */
     public ArrayList<Double> loadTrainingConfiguration() throws IOException
     {
         ArrayList<Double>config = new ArrayList<Double>(3);
@@ -97,6 +109,13 @@ public class FileManager
         return wordsProbabilities;
     }
 
+    /**
+     * Writes the current configuration of the application on a file.
+     * @param spamProbability
+     * @param spamThreshold
+     * @param emailAmount
+     * @throws IOException
+     */
     public void saveTrainingData(double spamProbability, double spamThreshold, int emailAmount) throws IOException
     {
         FileWriter writer = new FileWriter("files/config.txt");

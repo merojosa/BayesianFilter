@@ -13,6 +13,9 @@ public class Controller
     private SpamFilter spamFilter;
     private FileManager fileManager;
 
+    /**
+     * Constructor of the controller, initializes authenticator, visualizer and emailLoader
+     */
     public Controller()
     {
         authenticator = new Authenticator();
@@ -23,6 +26,7 @@ public class Controller
 
     /**
      * Starts the program.
+     * Main method of the controller who constructs other classes and call their methods.
      * @throws IOException
      * @throws GeneralSecurityException
      */
