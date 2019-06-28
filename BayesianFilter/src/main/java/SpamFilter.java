@@ -29,6 +29,7 @@ public class SpamFilter
         }
         catch (Exception o)
         {
+            wordsProbabilities = new HashMap<String, WordsProbability>();
             /*
             if(o.getMessage()==null || o.getMessage().equals("WordsProbability cannot be cast to java.lang.String"))
             {
@@ -121,8 +122,6 @@ public class SpamFilter
     {
         if(spam.size()+notSpam.size()>=emailAmount) {
             HashSet<String> commonWords = fileManager.getStopWords();
-            Map<String, WordsProbability> wordsProbabilities = new HashMap<String, WordsProbability>() {{
-            }};
 
             for (int i = 0; i < spam.size(); i++) {
                 String emailsText = "";
@@ -208,7 +207,7 @@ public class SpamFilter
 
             fileManager.saveWordsProbability(wordsProbabilities);
         }
-        else{throw new Exception("Se cancelo el entrenamiento porque se necesitan mas correos para entrenar el sistema");}
+        else{throw new Exception("Se cancelo el entrenamiento porque se necesitan mas correos para entrenar el sistema.\n");}
     }
 
     /**
