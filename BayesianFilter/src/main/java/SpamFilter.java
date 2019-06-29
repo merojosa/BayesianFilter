@@ -49,7 +49,7 @@ public class SpamFilter
      * Determines if an email is spam or not.
      * Requires the system to be trained using the method train(List<Email> spam,List<Email> notSpam).
      * @param email
-     * @return
+     * @return boolean
      */
     public boolean determineEmail(Email email)
     {
@@ -136,7 +136,7 @@ public class SpamFilter
                     emailWords[counter] = emailWords[counter].toLowerCase();
                     if (!commonWords.contains(emailWords[counter])) {
                         if (wordsProbabilities.get(emailWords[counter]) == null) {
-                            wordsProbabilities.put(emailWords[counter], new WordsProbability(emailWords[counter], 1, 0, new Double(1) / spam.size(), 0));
+                            wordsProbabilities.put(emailWords[counter], new WordsProbability(emailWords[counter], 1, 0, 1.0 / spam.size(), 0));
                             countedWords.add(emailWords[counter]);
                         } else {
                             WordsProbability word = wordsProbabilities.get(emailWords[counter]);
@@ -172,7 +172,7 @@ public class SpamFilter
                     emailWords[counter] = emailWords[counter].toLowerCase();
                     if (!commonWords.contains(emailWords[counter])) {
                         if (wordsProbabilities.get(emailWords[counter]) == null) {
-                            wordsProbabilities.put(emailWords[counter], new WordsProbability(emailWords[counter], 0, 1, 0, new Double(1) / notSpam.size()));
+                            wordsProbabilities.put(emailWords[counter], new WordsProbability(emailWords[counter], 0, 1, 0, 1.0 / notSpam.size()));
                             countedWords.add(emailWords[counter]);
                         } else {
                             word = wordsProbabilities.get(emailWords[counter]);
@@ -181,7 +181,7 @@ public class SpamFilter
                                 word.setTotalEmails(wordsProbabilities.get(emailWords[counter]).getTotalEmails() + 1);
                                 word.setWordAmount(wordsProbabilities.get(emailWords[counter]).getWordAmount() + 1);
                             }
-                            word.setNotSpamProbability(new Double(wordsProbabilities.get(emailWords[counter]).getTotalEmails()) / notSpam.size());
+                            word.setNotSpamProbability((double)(wordsProbabilities.get(emailWords[counter]).getTotalEmails()) / notSpam.size());
                             wordsProbabilities.put(emailWords[counter], word);
                         }
                     }
@@ -207,12 +207,6 @@ public class SpamFilter
                 this.trainWithNotSpam(commonWords, notSpam);
                 wordsProbabilities.remove("");
                 wordsProbabilities.remove("''");
-                for (Map.Entry<String, WordsProbability> entry : wordsProbabilities.entrySet()) {
-                    System.out.println("clave: " + entry.getKey() + " ,palabra: " + entry.getValue().getWord()
-                            + " ,proba spam:  " + entry.getValue().getSpamProbability() + ", proba de no spam:  " + entry.getValue().getNotSpamProbability()
-                            + ",cantidad en no spam:" + entry.getValue().getTotalEmails()
-                    );
-                }
 
                 fileManager.saveWordsProbability(wordsProbabilities);
             }
@@ -275,7 +269,7 @@ public class SpamFilter
 
     /**
      * Checks if the system is already trained
-     * @return
+     * @return boolean
      */
     public boolean isTrained()
     {
