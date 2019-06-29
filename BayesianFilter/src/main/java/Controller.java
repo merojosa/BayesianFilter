@@ -155,6 +155,7 @@ public class Controller
                         try
                         {
                             spamFilter.train(emailLoader.getSpam(authenticator.getService()), emailLoader.getNotSpam(authenticator.getService()));
+                            visualizer.showMessage("Training completed");
                         }
                         catch (Exception o)
                         {
