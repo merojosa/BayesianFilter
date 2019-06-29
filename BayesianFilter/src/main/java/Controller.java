@@ -71,7 +71,7 @@ public class Controller
                 {
                     // Configuration
                     case "1":
-                    case "configurar":
+                    case "configure":
                     {
                         visualizer.showConfigurationMenu();
                         while (!goBack)
@@ -79,71 +79,68 @@ public class Controller
                             switch (visualizer.readConsoleString())
                             {
                                 case "1":
-                                case "cambiar probabilidad de 'spam'":
-                                case "probabilidad":
-                                    visualizer.showMessage("Ingrese el nuevo valor de la probabilidad");
+                                case "change spam probability":
+                                case "probability":
+                                    visualizer.showMessage("Enter the new spam probability");
                                     try {
                                         double probability = visualizer.readConsoleDouble();
                                         while (!(probability >= 0 && probability <= 1)) {
-                                            visualizer.showMessage("Ingrese un valor entre 0 y 1");
+                                            visualizer.showMessage("Enter a value between 0 and 1");
                                             probability = visualizer.readConsoleDouble();
                                         }
                                         spamFilter.setSpamProbability(probability);
-                                        visualizer.showMessage("Se guardo el valor");
+                                        visualizer.showMessage("Number saved");
                                     }
                                     catch (Exception o)
                                     {
-                                        visualizer.showMessage("No se pudo realizar la operacion porque el valor es invalido");
+                                        visualizer.showMessage("Wrong value, the operation wasn't completed");
                                     }
                                     break;
                                 case "2":
-                                case "cambiar 'spam' threshold":
-                                case "limite":
+                                case "change threshold":
                                 case "threshold":
-                                    visualizer.showMessage("Ingrese el nuevo valor del threshold");
+                                    visualizer.showMessage("Enter the new threshold");
                                     try {
                                         double threshold = visualizer.readConsoleDouble();
                                         while (!(threshold >= 0 && threshold <= 1)) {
-                                            visualizer.showMessage("Ingrese un valor entre 0 y 1");
+                                            visualizer.showMessage("Enter a value between 0 and 1");
                                             threshold = visualizer.readConsoleDouble();
                                         }
 
                                         spamFilter.setSpamThreshold(threshold);
-                                        visualizer.showMessage("Se guardo el valor");
+                                        visualizer.showMessage("Number saved");
                                     }
                                     catch(Exception o)
                                     {
-                                        visualizer.showMessage("No se pudo realizar la operacion porque el valor es invalido");
+                                        visualizer.showMessage("Wrong value, the operation wasn't completed");
                                     }
                                     break;
                                 case "3":
-                                case "Cambiar el tamaño del conjunto de entrenamiento":
-                                case "tamanio":
-                                case "tamaño":
-                                case "conjunto:":
-                                case "entrenamiento":
-                                    visualizer.showMessage("Ingrese el nuevo valor del tamaño");
+                                case "change number of emails for training":
+                                case "number of emails":
+                                    visualizer.showMessage("Enter the new number of emails");
                                     try {
                                         int size = visualizer.readConsonleInt();
                                         while (size < 0) {
-                                            visualizer.showMessage("Ingrese un numero mayor a 0");
+                                            visualizer.showMessage("Enter a value bigger than 0");
                                             size = visualizer.readConsonleInt();
                                         }
 
                                         spamFilter.setEmailAmount(size);
-                                        visualizer.showMessage("Se guardo el valor");
+                                        visualizer.showMessage("Number saved");
                                     }
                                     catch (Exception o)
                                     {
-                                        visualizer.showMessage("No se pudo realizar la oprecion porque el valor es invalido");
+                                        visualizer.showMessage("Wrong value, the operation wasn't completed");
                                     }
                                     break;
                                 case "4":
-                                case "mostrar configuracion":
+                                case "show current configuration":
+                                case "configuration":
                                     visualizer.showConfiguration(spamFilter.getSpamProbability(), spamFilter.getSpamThreshold(), spamFilter.getEmailAmount());
                                     break;
                                 case "5":
-                                case "regresar":
+                                case "go back":
                                     goBack = true;
                                     break;
                             }
@@ -154,14 +151,14 @@ public class Controller
                     // Train
                     case "2":
                     {
-                        visualizer.showMessage("Entrenando el sistema...\n");
+                        visualizer.showMessage("Training...\n");
                         try
                         {
                             spamFilter.train(emailLoader.getSpam(authenticator.getService()), emailLoader.getNotSpam(authenticator.getService()));
                         }
                         catch (Exception o)
                         {
-                            if (o.getMessage().equals("Se cancelo el entrenamiento porque se necesitan mas correos para entrenar el sistema.\n"))
+                            if (o.getMessage().equals("Training canceled, you need more emails\n"))
                             {
                                 visualizer.showMessage(o.getMessage());
                             }
@@ -169,10 +166,10 @@ public class Controller
                             {
                                 if (o.getMessage().equals("www.googleapis.com"))
                                 {
-                                    visualizer.showMessage("No se pudo establecer la conexion con el servidor de google.");
+                                    visualizer.showMessage("Connection error");
                                 } else
                                 {
-                                    visualizer.showMessage("Ocurrio un error y no se pudo entrenar el sistema.\n");
+                                    visualizer.showMessage("Error, the training wasn't completed\n");
                                 }
                             }
                         }
@@ -187,7 +184,7 @@ public class Controller
                         }
                         else
                         {
-                            visualizer.showMessage("Entrenamiento necesario");
+                            visualizer.showMessage("Training necessary");
                         }
 
                         break;
@@ -197,7 +194,7 @@ public class Controller
                     {
                         if(spamFilter.isTrained() == true)
                         {
-                            visualizer.showMessage("Obteniendo correos nuevos...\n");
+                            visualizer.showMessage("Getting unread emails...\n");
                             // Iterate through all unread messages.
                             try
                             {
@@ -205,7 +202,7 @@ public class Controller
 
                                 if (unreadEmails.isEmpty())
                                 {
-                                    visualizer.showMessage("No hay correos nuevos.");
+                                    visualizer.showMessage("No unread emails");
                                 }
                                 else
                                 {
@@ -226,12 +223,12 @@ public class Controller
                             }
                             catch (Exception o)
                             {
-                                visualizer.showMessage("Hubo un problema al obtener correos.");
+                                visualizer.showMessage("Error, unread emails wasn't gotten");
                             }
                         }
                         else
                         {
-                            visualizer.showMessage("Entrenamiento necesario");
+                            visualizer.showMessage("Training necessary");
                         }
                         break;
                     }
@@ -244,7 +241,7 @@ public class Controller
                     }
                     // Exit.
                     case "6":
-                    case "salir":
+                    case "leave":
                         System.exit(0);
                 }
             }
