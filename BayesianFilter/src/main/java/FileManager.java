@@ -25,7 +25,7 @@ public class FileManager
 
     /**
      * Reads the configuration of the application from a file
-     * @return
+     * @return config
      * @throws IOException
      */
     public ArrayList<Double> loadTrainingConfiguration() throws IOException
@@ -47,26 +47,18 @@ public class FileManager
      * The method also change the words to lower case.
      * @return stopWords
      */
-    public HashSet<String> getStopWords()
+    public HashSet<String> getStopWords() throws IOException
     {
         HashSet<String> stopWords= stopWords = new HashSet<String>();
-        try
+        FileReader fileReader = new FileReader("files/StopWords.txt");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String line;
+        while ((line = bufferedReader.readLine()) != null)
         {
-            FileReader fileReader = new FileReader("files/StopWords.txt");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            String line;
-            while ((line = bufferedReader.readLine()) != null)
-            {
-                stopWords.add(line.toLowerCase());
-            }
-            fileReader.close();
-            bufferedReader.close();
+            stopWords.add(line.toLowerCase());
         }
-        catch (IOException e)
-        {
-            System.out.println(e.getMessage());
-        }
+        fileReader.close();
+        bufferedReader.close();
         return stopWords;
     }
 
@@ -78,34 +70,23 @@ public class FileManager
     public Map<String, WordsProbability> loadWordsProbability() throws Exception
     {
         Map<String,WordsProbability> wordsProbabilities = new HashMap<String,WordsProbability>(){{}};
-            FileInputStream file = new FileInputStream("tokens/training.dat");
-            ObjectInputStream is = new ObjectInputStream(file);
-            Object objectReaded = null;
-            boolean read = false;
-            while (!read)
-            {
-                try
-                {
-                    objectReaded = is.readObject();
-                }
-                catch(Exception o)
-                {
-                    read = true;
-                }
-                if(!read) {
-                    String key = (String) objectReaded;
-                    objectReaded = is.readObject();
-                    WordsProbability currentWord = (WordsProbability) objectReaded;
-                    wordsProbabilities.put(key, currentWord);
-                    /*
-                    System.out.println("Palabra " + currentWord.getWord());
-                    System.out.println("proba spam : " + currentWord.getSpamProbability());
-                    System.out.println("proba notspam : " + currentWord.getNotSpamProbability() + "\n");
-                    */
-                }
-            }
-            is.close();
-            file.close();
+        FileInputStream file = new FileInputStream("tokens/training.dat");
+        ObjectInputStream is = new ObjectInputStream(file);
+        Object objectReaded = null;
+        while ((objectReaded = is.readObject())!=null)
+        {
+            String key = (String) objectReaded;
+            objectReaded = is.readObject();
+            WordsProbability currentWord = (WordsProbability) objectReaded;
+            wordsProbabilities.put(key, currentWord);
+            /*
+            System.out.println("Palabra " + currentWord.getWord());
+            System.out.println("proba spam : " + currentWord.getSpamProbability());
+            System.out.println("proba notspam : " + currentWord.getNotSpamProbability() + "\n");
+            */
+        }
+        is.close();
+        file.close();
         return wordsProbabilities;
     }
 
@@ -135,25 +116,26 @@ public class FileManager
      * You can find the file in the direction tokens/training.dat
      * @param wordsProbability
      */
-    public void saveWordsProbability(Map<String, WordsProbability> wordsProbability)
+    public void saveWordsProbability(Map<String, WordsProbability> wordsProbability) throws Exception
     {
-        try {
-            FileOutputStream file = new FileOutputStream("tokens/training.dat");
-            ObjectOutputStream os = new ObjectOutputStream(file);
-            for(Map.Entry<String,WordsProbability> actualWord: wordsProbability.entrySet())
-            {
-                os.writeObject(actualWord.getKey());
-                os.writeObject(actualWord.getValue());
-            }
-            file.close();
-            os.close();
-        }
-        catch (Exception o)
+        FileOutputStream file = new FileOutputStream("tokens/training.dat");
+        ObjectOutputStream os = new ObjectOutputStream(file);
+        for(Map.Entry<String,WordsProbability> actualWord: wordsProbability.entrySet())
         {
-            System.out.println("Hubo un problema al guardar los datos del entrenamiento.");
+            os.writeObject(actualWord.getKey());
+            os.writeObject(actualWord.getValue());
         }
+        os.writeObject(null);
+        os.writeObject(null);
+        file.close();
+        os.close();
     }
 
+    /**
+     * Checks if a file exists in a directory
+     * @param path
+     * @return
+     */
     public boolean fileExists(String path)
     {
         File file = new File(path);

@@ -20,7 +20,7 @@ public class Visualizer
      */
     public void showStartApp()
     {
-        System.out.println("Bayesian Filter, Sebastian - Jose Andres \nChoose one option\n[1]Log in \n[2]Leave");
+        System.out.println("Bayesian Filter, Sebastian - Jose Andres \nChoose one option\n[1]Login \n[2]Leave");
     }
 
     /**
@@ -28,7 +28,7 @@ public class Visualizer
      */
     public void showMainMenu()
     {
-        System.out.println("Choose one option\n[1]Configure\n[2]Train\n[3]Show training data\n[4]Get unread emails\n[5]Log out\n[6]Leave");
+        System.out.println("Choose one option\n[1]Configure\n[2]Train\n[3]Show training data\n[4]Get unread emails\n[5]Logout\n[6]Exit");
     }
 
     /**
