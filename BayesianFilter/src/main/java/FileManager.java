@@ -79,9 +79,11 @@ public class FileManager
             objectReaded = is.readObject();
             WordsProbability currentWord = (WordsProbability) objectReaded;
             wordsProbabilities.put(key, currentWord);
+            /*
             System.out.println("Palabra " + currentWord.getWord());
             System.out.println("proba spam : " + currentWord.getSpamProbability());
             System.out.println("proba notspam : " + currentWord.getNotSpamProbability() + "\n");
+            */
         }
         is.close();
         file.close();

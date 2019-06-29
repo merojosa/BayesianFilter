@@ -143,17 +143,13 @@ public class SpamFilter
                 for (int counter = 0; counter < emailWords.length; counter++) {
                     if (emailWords[counter].length() > 2)
                     {
-                        WordsProbability word = new WordsProbability();
                         emailWords[counter] = emailWords[counter].toLowerCase();
                         if (!commonWords.contains(emailWords[counter])) {
                             if (wordsProbabilities.get(emailWords[counter]) == null) {
-                                word.setTotalSpam(1);
-                                word.setSpamProbability(new Double(1) / spam.size());
-                                word.setWord(emailWords[counter]);
-                                wordsProbabilities.put(emailWords[counter], word);
+                                wordsProbabilities.put(emailWords[counter], new WordsProbability(emailWords[counter],1,0,new Double(1) / spam.size(),0));
                                 countedWords.add(emailWords[counter]);
                             } else {
-                                word = wordsProbabilities.get(emailWords[counter]);
+                                WordsProbability word = wordsProbabilities.get(emailWords[counter]);
                                 if (!countedWords.contains(emailWords[counter])) {
                                     countedWords.add(emailWords[counter]);
                                     word.setTotalSpam(wordsProbabilities.get(emailWords[counter]).getTotalSpam() + 1);
@@ -178,10 +174,7 @@ public class SpamFilter
                         emailWords[counter] = emailWords[counter].toLowerCase();
                         if (!commonWords.contains(emailWords[counter])) {
                             if (wordsProbabilities.get(emailWords[counter]) == null) {
-                                word.setTotalEmails(1);
-                                word.setNotSpamProbability(new Double(1) / notSpam.size());
-                                word.setWord(emailWords[counter]);
-                                wordsProbabilities.put(emailWords[counter], word);
+                                wordsProbabilities.put(emailWords[counter], new WordsProbability(emailWords[counter],0,1,0,new Double(1) / notSpam.size()));
                                 countedWords.add(emailWords[counter]);
                             } else {
                                 word = wordsProbabilities.get(emailWords[counter]);
@@ -201,12 +194,13 @@ public class SpamFilter
             wordsProbabilities.remove("");
             wordsProbabilities.remove("''");
 
-        for (Map.Entry<String, WordsProbability> entry : wordsProbabilities.entrySet()) {
-            System.out.println("clave: " + entry.getKey() + " ,palabra: " + entry.getValue().getWord()
-            +" ,proba spam:  "+entry.getValue().getSpamProbability() + ", proba de no spam:  "+entry.getValue().getNotSpamProbability()
-            + ",cantidad en no spam:"+entry.getValue().getTotalEmails()
-            );
-        }
+            for (Map.Entry<String, WordsProbability> entry : wordsProbabilities.entrySet()) {
+                System.out.println("clave: " + entry.getKey() + " ,palabra: " + entry.getValue().getWord()
+                        +" ,proba spam:  "+entry.getValue().getSpamProbability() + ", proba de no spam:  "+entry.getValue().getNotSpamProbability()
+                        + ",cantidad en no spam:"+entry.getValue().getTotalEmails()
+                );
+            }
+
             fileManager.saveWordsProbability(wordsProbabilities);
         }
         else{throw new Exception("Se cancelo el entrenamiento porque se necesitan mas correos para entrenar el sistema.\n");}
