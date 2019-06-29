@@ -20,7 +20,7 @@ public class Visualizer
      */
     public void showStartApp()
     {
-        System.out.println("Bienvenido a la aplicacion de Filtro Bayesiano \n Seleccione una opcion \n[1]Autenticarse\n[2]Salir" );
+        System.out.println("Bayesian Filter, Sebastian - Jose Andres \nChoose one option\n[1]Login \n[2]Leave");
     }
 
     /**
@@ -28,7 +28,7 @@ public class Visualizer
      */
     public void showMainMenu()
     {
-        System.out.println("Seleccione una opción\n[1]Configurar\n[2]Entrenar\n[3]Mostrar datos\n[4]Obtener correos nuevos\n[5]Cerrar sesion\n[6]Salir");
+        System.out.println("Choose one option\n[1]Configure\n[2]Train\n[3]Show training data\n[4]Get unread emails\n[5]Logout\n[6]Exit");
     }
 
     /**
@@ -36,7 +36,7 @@ public class Visualizer
      */
     public void showConfigurationMenu()
     {
-        System.out.println("Seleccione una opcion\n[1]Cambiar probabilidad de 'SPAM'\n[2]Cambiar 'SPAM Threshold'\n[3]Cambiar el tamanio del conjunto de entrenamiento\n[4]Mostrar configuracion\n[5]Regresar");
+        System.out.println("Choose one option\n[1]Change spam probability\n[2]Change threshold\n[3]Change number of emails for training\n[4]Show current configuration\n[5]Go back");
     }
 
     /**
@@ -47,7 +47,7 @@ public class Visualizer
      */
     public void showConfiguration(double spamProbability, double spamThreshold, int emailAmount)
     {
-        System.out.println("Probabilidad de spam: "+spamProbability+"\nLimite de spam: "+spamThreshold+"\nMinimo de cantidad de correos: "+emailAmount);
+        System.out.println("Spam probability: "+spamProbability+"\nThreshold: "+spamThreshold+"\nNumber of emails: "+emailAmount);
     }
 
     /**
@@ -59,7 +59,7 @@ public class Visualizer
         if(wordsProbabilities.size() > 0)
         {
             System.out.println("\n----------------------------------------------------------------------------------");
-            System.out.printf("| %-" + SIZE_WORD + "s| %-15s | %-13s | %-10s | %-13s |", "Palabra", "Correos totales", "Cantidad spam", "Prob. spam", "Prob. no spam");
+            System.out.printf("| %-" + SIZE_WORD + "s| %-15s | %-13s | %-10s | %-13s |", "Word", "Total emails", "Total spam", "Spam prob", "Not spam prob");
             String word = "";
             for (Map.Entry<String, WordsProbability> mapWord : wordsProbabilities.entrySet())
             {
@@ -87,11 +87,11 @@ public class Visualizer
 
             }
             System.out.println("\n----------------------------------------------------------------------------------");
-            System.out.println("Total de palabras: " + wordsProbabilities.size());
+            System.out.println("Total words: " + wordsProbabilities.size());
         }
         else
         {
-            System.out.printf("No hay correos nuevos.");
+            System.out.printf("No unread emails");
         }
 
     }
