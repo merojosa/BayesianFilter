@@ -104,6 +104,11 @@ public class SpamFilter
         }
     }
 
+    /**
+     * Gets the text of important parts of the email
+     * @param email
+     * @return
+     */
     private String[] splitEmail(Email email)
     {
         String emailsText = "";
@@ -115,6 +120,11 @@ public class SpamFilter
         return emailsText.split("[^a-zA-Z'áéíóúàèìòùäëïöü]+");
     }
 
+    /**
+     * Count the words of spam email and add them to the training
+     * @param commonWords
+     * @param spam
+     */
     private void trainWithSpam(HashSet<String> commonWords, List<Email> spam)
     {
         for (int i = 0; i < spam.size(); i++) {
@@ -145,6 +155,11 @@ public class SpamFilter
         }
     }
 
+    /**
+     * Count the words of a non spam email and add them to the training
+     * @param commonWords
+     * @param notSpam
+     */
     private void trainWithNotSpam(HashSet<String> commonWords, List<Email> notSpam)
     {
         for (int j = 0; j < notSpam.size(); j++) {
@@ -210,8 +225,6 @@ public class SpamFilter
             }
     }
 
-
-
     /**
      * Changes the default configuration with the configuration loaded from the user's file.
      * @throws IOException
@@ -260,6 +273,10 @@ public class SpamFilter
         this.wordsProbabilities = wordsProbabilities;
     }
 
+    /**
+     * Checks if the system is already trained
+     * @return
+     */
     public boolean isTrained()
     {
         if(fileManager.fileExists("tokens/training.dat") == true)
