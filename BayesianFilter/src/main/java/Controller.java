@@ -164,13 +164,18 @@ public class Controller
                             }
                             else
                             {
-                                if (o.getMessage().equals("www.googleapis.com"))
+                                //"System was unable to find emails"
+                                if(o.getMessage().equals("System was unable to find emails"))
                                 {
-                                    visualizer.showMessage("Connection error");
-                                } else
-                                {
-                                    visualizer.showMessage("Error, the training wasn't completed\n");
+                                    visualizer.showMessage(o.getMessage());
                                 }
+                                    else{
+                                if (o.getMessage().equals("www.googleapis.com")) {
+                                    visualizer.showMessage("Connection error");
+                                } else {
+                                    visualizer.showMessage("Error, the training was canceled\n");
+                                }
+                            }
                             }
                         }
                         break;
