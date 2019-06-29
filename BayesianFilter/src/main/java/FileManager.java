@@ -131,6 +131,11 @@ public class FileManager
         os.close();
     }
 
+    /**
+     * Checks if a file exists in a directory
+     * @param path
+     * @return
+     */
     public boolean fileExists(String path)
     {
         File file = new File(path);
