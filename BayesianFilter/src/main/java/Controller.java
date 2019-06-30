@@ -9,7 +9,6 @@ public class Controller
     private Visualizer visualizer;
     private EmailLoader emailLoader;
     private SpamFilter spamFilter;
-    private FileManager fileManager;
 
     /**
      * Constructor of the controller, initializes authenticator, visualizer, emailLoader and fileManager.
@@ -19,7 +18,6 @@ public class Controller
         authenticator = new Authenticator();
         visualizer = new Visualizer();
         emailLoader = new EmailLoader();
-        fileManager = new FileManager();
     }
 
     /**
@@ -32,6 +30,7 @@ public class Controller
     {
         boolean goBack;
         boolean continueLoop;
+        boolean nextMenu = false;
         String messageSpam = "";
         ArrayList<Email> unreadEmails;
 
@@ -39,19 +38,21 @@ public class Controller
         {
             continueLoop = true;
             goBack = false;
+
             if(authenticator.isAuthenticated() == false)
             {
-                // If the user is not authenticated, it will show the start app interface.
-                visualizer.showStartApp();
-                switch (visualizer.readConsoleString())
-                {
-                    case "2":
-                    case "exit":
-                        System.exit(0);
-                    case"1":
-                    case"login":
-                    {
-                        authenticator.logIn();
+                while(nextMenu == false) {
+                    // If the user is not authenticated, it will show the start app interface.
+                    visualizer.showStartApp();
+                    switch (visualizer.readConsoleString()) {
+                        case "2":
+                        case "exit":
+                            System.exit(0);
+                        case "1":
+                        case "login": {
+                            authenticator.logIn();
+                            nextMenu = true;
+                        }
                     }
                 }
             }
@@ -154,6 +155,7 @@ public class Controller
                     }
                     // Train
                     case "2":
+                    case"train":
                     {
                         visualizer.showMessage("Training...\n");
                         try
@@ -191,6 +193,7 @@ public class Controller
                     }
                     // Show training data.
                     case "3":
+                    case "show training data":
                     {
                         if(spamFilter.isTrained() == true)
                         {
@@ -205,6 +208,7 @@ public class Controller
                     }
                     // Get unread messages.
                     case "4":
+                    case"get unread emails":
                     {
                         if(spamFilter.isTrained() == true)
                         {
@@ -248,9 +252,11 @@ public class Controller
                     }
                     // Close session.
                     case "5":
+                    case"logout":
                     {
                         authenticator.closeSession();
                         continueLoop = false;
+                        nextMenu = false;
                         break;
                     }
                     // Exit.

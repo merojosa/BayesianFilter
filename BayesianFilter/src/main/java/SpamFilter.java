@@ -63,8 +63,7 @@ public class SpamFilter
         multiplyProbabilities(email.getSubject(), computedWords);
         multiplyProbabilities(email.getFrom(), computedWords);
 
-        double result = spamProbabilities /
-                (spamProbabilities + notSpamProbabilities);
+        double result = spamProbabilities / (spamProbabilities + notSpamProbabilities);
 
         if(result < spamThreshold)  // If it is less than the threshold, is not spam.
         {
@@ -129,8 +128,7 @@ public class SpamFilter
     {
         for (int i = 0; i < spam.size(); i++) {
             String[] emailWords = this.splitEmail(spam.get(i));
-            int numWord = emailWords.length;
-            HashSet<String> countedWords = countedWords = new HashSet<String>();
+            HashSet<String> countedWords = new HashSet<String>();
             for (int counter = 0; counter < emailWords.length; counter++) {
                 if (emailWords[counter].length() > 2) {
                     emailWords[counter] = emailWords[counter].toLowerCase();
@@ -164,8 +162,7 @@ public class SpamFilter
         for (int j = 0; j < notSpam.size(); j++)
         {
             String[] emailWords = this.splitEmail(notSpam.get(j));
-            int numWord = emailWords.length;
-            HashSet<String> countedWords = countedWords = new HashSet<String>();
+            HashSet<String> countedWords = new HashSet<String>();
             for (int counter = 0; counter < emailWords.length; counter++)
             {
                 if (emailWords[counter].length() > 2)

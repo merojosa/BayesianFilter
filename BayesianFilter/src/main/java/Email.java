@@ -6,14 +6,6 @@ public class Email
     private String body;
     private String subject;
 
-    public Email(String snippet, String from, String body, String subject)
-    {
-        this.snippet = snippet;
-        this.from = from;
-        this.body = body;
-        this.subject = subject;
-    }
-
     public Email()
     {
         snippet = "";

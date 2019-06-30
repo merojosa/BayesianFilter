@@ -43,7 +43,7 @@ public class FileManager
      */
     public HashSet<String> getStopWords() throws IOException
     {
-        HashSet<String> stopWords= stopWords = new HashSet<String>();
+        HashSet<String> stopWords = new HashSet<String>();
         FileReader fileReader = new FileReader("files/StopWords.txt");
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         String line;
@@ -72,11 +72,6 @@ public class FileManager
             objectReaded = is.readObject();
             WordsProbability currentWord = (WordsProbability) objectReaded;
             wordsProbabilities.put(key, currentWord);
-            /*
-            System.out.println("Palabra " + currentWord.getWord());
-            System.out.println("proba spam : " + currentWord.getSpamProbability());
-            System.out.println("proba notspam : " + currentWord.getNotSpamProbability() + "\n");
-            */
         }
         is.close();
         file.close();
