@@ -24,7 +24,7 @@ public class EmailLoader
     /**
      * Calls getEmails with the query "is:spam" to get spam emails.
      * @param service
-     * @return ArrayList<Email>
+     * @return a list of spam emails if there is no problem, otherwise null.
      */
     public List<Email> getSpam(Gmail service)
     {
@@ -41,7 +41,7 @@ public class EmailLoader
     /**
      * Calls getEmails with the query "is:inbox" to get the inbox emails.
      * @param service
-     * @return ArrayList<Email>
+     * @return a list of not spam emails if there is no problem, otherwise null.
      */
     public List<Email> getNotSpam(Gmail service)
     {
@@ -58,10 +58,10 @@ public class EmailLoader
     /**
      * Calls getEmails with the query "is:unread" to get unread emails.
      * @param service
-     * @return  ArrayList<Email>
+     * @return a list of unread emails if there is no problem, otherwise null.
      * @throws IOException
      */
-    public ArrayList<Email> getUnreadEmail(Gmail service)  throws IOException
+    public ArrayList<Email> getUnread(Gmail service)  throws IOException
     {
         try
         {
@@ -77,7 +77,7 @@ public class EmailLoader
      * Gets a list of emails acording the given query.
      * @param service
      * @param emailQuery
-     * @return ArrayList<Email>
+     * @return a list of emails.
      * @throws IOException
      */
     private ArrayList<Email> getEmails(Gmail service, String emailQuery) throws IOException
@@ -112,7 +112,7 @@ public class EmailLoader
      * @param service
      * @param userId
      * @param messageId
-     * @return Email
+     * @return an email with the body, from and subject.
      * @throws IOException
      */
     private Email getWholeEmail(Gmail service, String userId, String messageId)

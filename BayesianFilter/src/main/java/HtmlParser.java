@@ -14,7 +14,7 @@ public class HtmlParser {
     /**
      * Parse the html to plain text
      * @param html
-     * @return parsedHtml
+     * @return plaint text of the html.
      */
     public String parseHtmlToPlainText(String html)
     {

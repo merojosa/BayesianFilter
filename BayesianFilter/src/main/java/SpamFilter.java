@@ -27,7 +27,7 @@ public class SpamFilter
         fileManager = new FileManager();
         try
         {
-            wordsProbabilities = fileManager.loadWordsProbability();
+            wordsProbabilities = fileManager.loadWordsProbability("tokens/training.dat");
         }
         catch (Exception o)
         {
@@ -143,7 +143,6 @@ public class SpamFilter
                             if (!countedWords.contains(emailWords[counter])) {
                                 countedWords.add(emailWords[counter]);
                                 word.setTotalSpam(wordsProbabilities.get(emailWords[counter]).getTotalSpam() + 1);
-                                word.setWordAmount(wordsProbabilities.get(emailWords[counter]).getWordAmount() + 1);
                             }
                             word.setSpamProbability(new Double(wordsProbabilities.get(emailWords[counter]).getTotalSpam()) / spam.size());
                             wordsProbabilities.put(emailWords[counter], word);
@@ -162,30 +161,36 @@ public class SpamFilter
      */
     private void trainWithNotSpam(HashSet<String> commonWords, List<Email> notSpam)
     {
-        for (int j = 0; j < notSpam.size(); j++) {
+        for (int j = 0; j < notSpam.size(); j++)
+        {
             String[] emailWords = this.splitEmail(notSpam.get(j));
             int numWord = emailWords.length;
             HashSet<String> countedWords = countedWords = new HashSet<String>();
-            for (int counter = 0; counter < emailWords.length; counter++) {
-                if (emailWords[counter].length() > 2) {
+            for (int counter = 0; counter < emailWords.length; counter++)
+            {
+                if (emailWords[counter].length() > 2)
+                {
                     WordsProbability word = new WordsProbability();
                     emailWords[counter] = emailWords[counter].toLowerCase();
-                    if (!commonWords.contains(emailWords[counter])) {
-                        if (wordsProbabilities.get(emailWords[counter]) == null) {
+                    if (!commonWords.contains(emailWords[counter]))
+                    {
+                        if (wordsProbabilities.get(emailWords[counter]) == null)
+                        {
                             wordsProbabilities.put(emailWords[counter], new WordsProbability(emailWords[counter], 0, 1, 0, 1.0 / notSpam.size()));
                             countedWords.add(emailWords[counter]);
-                        } else {
+                        }
+                        else
+                        {
                             word = wordsProbabilities.get(emailWords[counter]);
-                            if (!countedWords.contains(emailWords[counter])) {
+                            if (!countedWords.contains(emailWords[counter]))
+                            {
                                 countedWords.add(emailWords[counter]);
                                 word.setTotalEmails(wordsProbabilities.get(emailWords[counter]).getTotalEmails() + 1);
-                                word.setWordAmount(wordsProbabilities.get(emailWords[counter]).getWordAmount() + 1);
                             }
                             word.setNotSpamProbability((double)(wordsProbabilities.get(emailWords[counter]).getTotalEmails()) / notSpam.size());
                             wordsProbabilities.put(emailWords[counter], word);
                         }
                     }
-
                 }
             }
         }
@@ -200,23 +205,27 @@ public class SpamFilter
     public void train(List<Email> spam,List<Email> notSpam) throws Exception
     {
         wordsProbabilities.clear();
-        if(spam.size()+notSpam.size()>=emailAmount) {
-            if(spam!=null||notSpam!=null) {
+        if(spam.size()+notSpam.size()>=emailAmount)
+        {
+            if(spam!=null||notSpam!=null)
+            {
                 HashSet<String> commonWords = fileManager.getStopWords();
                 this.trainWithSpam(commonWords, spam);
                 this.trainWithNotSpam(commonWords, notSpam);
                 wordsProbabilities.remove("");
                 wordsProbabilities.remove("''");
 
-                fileManager.saveWordsProbability(wordsProbabilities);
+                fileManager.saveWordsProbability(wordsProbabilities, "tokens/training.dat");
             }
-            else{
-                    throw new Exception("System was unable to find emails");
-                }
+            else
+            {
+                throw new Exception("System was unable to find emails");
+            }
         }
-        else{
-                throw new Exception("Training canceled, you need more emails\n");
-            }
+        else
+        {
+            throw new Exception("Training canceled, you need more emails\n");
+        }
     }
 
     /**
@@ -239,37 +248,35 @@ public class SpamFilter
         return spamThreshold;
     }
 
-    public int getEmailAmount() {
-        return emailAmount;
-    }
+    public int getEmailAmount() { return emailAmount; }
 
-    public void setSpamProbability(double spamProbability) throws IOException {
-
+    public void setSpamProbability(double spamProbability) throws IOException
+    {
         this.spamProbability = spamProbability;
-        fileManager.saveTrainingData(this.spamProbability,this.spamThreshold,this.emailAmount);
+        fileManager.saveTrainingData(this.spamProbability,this.spamThreshold,this.emailAmount, "files/config.txt");
     }
 
-    public void setSpamThreshold(double spamThreshold) throws IOException{
+    public void setSpamThreshold(double spamThreshold) throws IOException
+    {
         this.spamThreshold = spamThreshold;
-        fileManager.saveTrainingData(this.spamProbability,this.spamThreshold,this.emailAmount);
+        fileManager.saveTrainingData(this.spamProbability,this.spamThreshold,this.emailAmount, "files/config.txt");
     }
 
-    public void setEmailAmount(int emailAmount) throws IOException{
+    public void setEmailAmount(int emailAmount) throws IOException
+    {
         this.emailAmount = emailAmount;
-        fileManager.saveTrainingData(this.spamProbability,this.spamThreshold,this.emailAmount);
+        fileManager.saveTrainingData(this.spamProbability,this.spamThreshold,this.emailAmount, "files/config.txt");
     }
 
     public Map<String, WordsProbability> getWordsProbabilities() {
         return wordsProbabilities;
     }
 
-    public void setWordsProbabilities(Map<String, WordsProbability> wordsProbabilities) {
-        this.wordsProbabilities = wordsProbabilities;
-    }
+    public void setWordsProbabilities(Map<String, WordsProbability> wordsProbabilities) { this.wordsProbabilities = wordsProbabilities; }
 
     /**
      * Checks if the system is already trained
-     * @return boolean
+     * @return true if the training exists, otherwise false.
      */
     public boolean isTrained()
     {

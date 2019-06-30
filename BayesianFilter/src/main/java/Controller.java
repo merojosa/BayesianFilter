@@ -1,5 +1,3 @@
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.System;
 import java.security.GeneralSecurityException;
@@ -14,7 +12,7 @@ public class Controller
     private FileManager fileManager;
 
     /**
-     * Constructor of the controller, initializes authenticator, visualizer and emailLoader
+     * Constructor of the controller, initializes authenticator, visualizer, emailLoader and fileManager.
      */
     public Controller()
     {
@@ -26,7 +24,7 @@ public class Controller
 
     /**
      * Starts the program.
-     * Main method of the controller who constructs other classes and call their methods.
+     * Main method of the controller that calls other classes' methods.
      * @throws IOException
      * @throws GeneralSecurityException
      */
@@ -48,10 +46,10 @@ public class Controller
                 switch (visualizer.readConsoleString())
                 {
                     case "2":
-                    case "salir":
+                    case "exit":
                         System.exit(0);
                     case"1":
-                    case"autenticarse":
+                    case"login":
                     {
                         authenticator.logIn();
                     }
@@ -82,9 +80,11 @@ public class Controller
                                 case "change spam probability":
                                 case "probability":
                                     visualizer.showMessage("Enter the new spam probability");
-                                    try {
+                                    try
+                                    {
                                         double probability = visualizer.readConsoleDouble();
-                                        while (!(probability >= 0 && probability <= 1)) {
+                                        while (!(probability >= 0 && probability <= 1))
+                                        {
                                             visualizer.showMessage("Enter a value between 0 and 1");
                                             probability = visualizer.readConsoleDouble();
                                         }
@@ -100,9 +100,11 @@ public class Controller
                                 case "change threshold":
                                 case "threshold":
                                     visualizer.showMessage("Enter the new threshold");
-                                    try {
+                                    try
+                                    {
                                         double threshold = visualizer.readConsoleDouble();
-                                        while (!(threshold >= 0 && threshold <= 1)) {
+                                        while (!(threshold >= 0 && threshold <= 1))
+                                        {
                                             visualizer.showMessage("Enter a value between 0 and 1");
                                             threshold = visualizer.readConsoleDouble();
                                         }
@@ -119,9 +121,11 @@ public class Controller
                                 case "change number of emails for training":
                                 case "number of emails":
                                     visualizer.showMessage("Enter the new number of emails");
-                                    try {
+                                    try
+                                    {
                                         int size = visualizer.readConsonleInt();
-                                        while (size < 0) {
+                                        while (size < 0)
+                                        {
                                             visualizer.showMessage("Enter a value bigger than 0");
                                             size = visualizer.readConsonleInt();
                                         }
@@ -170,13 +174,17 @@ public class Controller
                                 {
                                     visualizer.showMessage(o.getMessage());
                                 }
-                                    else{
-                                if (o.getMessage().equals("www.googleapis.com")) {
-                                    visualizer.showMessage("Connection error");
-                                } else {
-                                    visualizer.showMessage("Error, the training was canceled\n");
+                                else
+                                {
+                                    if (o.getMessage().equals("www.googleapis.com"))
+                                    {
+                                        visualizer.showMessage("Connection error");
+                                    }
+                                    else
+                                    {
+                                        visualizer.showMessage("Error, the training was canceled\n");
+                                    }
                                 }
-                            }
                             }
                         }
                         break;
@@ -204,7 +212,7 @@ public class Controller
                             // Iterate through all unread messages.
                             try
                             {
-                                unreadEmails = emailLoader.getUnreadEmail(authenticator.getService());
+                                unreadEmails = emailLoader.getUnread(authenticator.getService());
 
                                 if (unreadEmails.isEmpty())
                                 {
@@ -247,7 +255,7 @@ public class Controller
                     }
                     // Exit.
                     case "6":
-                    case "leave":
+                    case "exit":
                         System.exit(0);
                 }
             }

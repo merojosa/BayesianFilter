@@ -31,7 +31,7 @@ public class Authenticator
     private Gmail service;
 
     /**
-     * Log in the user with google's credentials.
+     * Logs in the user with google's credentials.
      * @throws IOException
      * @throws GeneralSecurityException
      */
@@ -50,41 +50,36 @@ public class Authenticator
     }
 
     /**
-     * Close the opened session of the app.
+     * Closes the opened session of the app by deleting the StoredCredentials file.  Moreover,
+     * deletes training.dat and config.txt.
      */
     public void closeSession()
     {
-        // Delete token
+        // Delete StoredCredential
         File file = new File(TOKENS_DIRECTORY_PATH + "/StoredCredential");
         file.delete();
+
         // Delete training data
-        try {
-            File trainingFile = new File("tokens/training.dat");
-            trainingFile.delete();
-        }
-        catch (Exception o)
-        {
-        }
-        try {
-            File trainingFile = new File("files/config.txt");
-            trainingFile.delete();
-        }
-        catch (Exception o)
-        {
-        }
+        File trainingFile = new File(TOKENS_DIRECTORY_PATH + "/training.dat");
+        trainingFile.delete();
+
+        // Delete config file.
+        File configFile = new File("files/config.txt");
+        configFile.delete();
     }
 
     /**
      * Makes a request to google's service to use the user's credentials.
      * @param HTTP_TRANSPORT
-     * @return Credential
+     * @return the user's credentials.
      * @throws IOException
      */
     private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException
     {
         // Load client secrets.
         InputStream in = Authenticator.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
-        if (in == null) {
+        if (in == null)
+        {
             throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
         }
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
@@ -101,10 +96,6 @@ public class Authenticator
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
 
-    /**
-     * Returns the gmail's service for the logged user.
-     * @return Gmail
-     */
     public Gmail getService()
     {
         return service;
@@ -112,7 +103,7 @@ public class Authenticator
 
     /**
      * Determines if the user is authenticated by checking the existence of StoredCredential file.
-     * @return boolean
+     * @return true if the user is authenticated, otherwise, not.
      */
     public boolean isAuthenticated()
     {

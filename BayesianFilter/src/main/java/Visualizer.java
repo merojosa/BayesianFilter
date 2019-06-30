@@ -20,7 +20,7 @@ public class Visualizer
      */
     public void showStartApp()
     {
-        System.out.println("Bayesian Filter, Sebastian - Jose Andres \nChoose one option\n[1]Login \n[2]Leave");
+        System.out.println("Bayesian Filter, Sebastian - Jose Andres \nChoose one option\n[1]Login \n[2]Exit");
     }
 
     /**
@@ -98,7 +98,7 @@ public class Visualizer
 
     /**
      * Reads a string from the consonle
-     * @return string
+     * @return what the user types.
      */
     public String readConsoleString()
     {
@@ -107,7 +107,7 @@ public class Visualizer
 
     /**
      * Reads a double from the console
-     * @return double
+     * @return what the user types.
      */
     public Double readConsoleDouble() throws Exception
     {
@@ -116,7 +116,7 @@ public class Visualizer
 
     /**
      * Reads an Int from the console
-     * @return int
+     * @return what the user types.
      */
     public int readConsonleInt() throws Exception
     {

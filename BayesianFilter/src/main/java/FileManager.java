@@ -16,16 +16,9 @@ import java.util.ArrayList;
 
 public class FileManager
 {
-
-    /**
-     * Empty constructor of the class FileManager
-     */
-    public FileManager() {
-    }
-
     /**
      * Reads the configuration of the application from a file
-     * @return config
+     * @return list of doubles with the configuration.
      * @throws IOException
      */
     public ArrayList<Double> loadTrainingConfiguration() throws IOException
@@ -34,7 +27,8 @@ public class FileManager
         File configFile = new File("files/config.txt");
         BufferedReader buffer = new BufferedReader(new FileReader(configFile));
         String read;
-        while ((read = buffer.readLine()) != null) {
+        while ((read = buffer.readLine()) != null)
+        {
             config.add(Double.valueOf(read));
         }
         buffer.close();
@@ -45,7 +39,7 @@ public class FileManager
      * Reads a file with the most used words of the spanish and english language to return a Hashset with them.
      * The file most be found on the direction files/StopWords.txt
      * The method also change the words to lower case.
-     * @return stopWords
+     * @return a hash with stop words.
      */
     public HashSet<String> getStopWords() throws IOException
     {
@@ -64,13 +58,12 @@ public class FileManager
 
     /**
      * Read the file with the training.
-     * The file most be found on the direction tokens/training.dat
-     * @return wordsProbabilities
+     * @return a map with the words' probabilities.
      */
-    public Map<String, WordsProbability> loadWordsProbability() throws Exception
+    public Map<String, WordsProbability> loadWordsProbability(String path) throws Exception
     {
         Map<String,WordsProbability> wordsProbabilities = new HashMap<String,WordsProbability>(){{}};
-        FileInputStream file = new FileInputStream("tokens/training.dat");
+        FileInputStream file = new FileInputStream(path);
         ObjectInputStream is = new ObjectInputStream(file);
         Object objectReaded = null;
         while ((objectReaded = is.readObject())!=null)
@@ -95,11 +88,13 @@ public class FileManager
      * @param spamProbability
      * @param spamThreshold
      * @param emailAmount
+     * @param path
      * @throws IOException
      */
-    public void saveTrainingData(double spamProbability, double spamThreshold, int emailAmount) throws IOException
+    public void saveTrainingData(double spamProbability, double spamThreshold, int emailAmount, String path)
+            throws IOException
     {
-        FileWriter writer = new FileWriter("files/config.txt");
+        FileWriter writer = new FileWriter(path);
         BufferedWriter buffer = new BufferedWriter(writer);
         buffer.write(new String().valueOf(spamProbability));
         buffer.newLine();
@@ -113,12 +108,13 @@ public class FileManager
 
     /**
      * Writes or creates a file with the training.
-     * You can find the file in the direction tokens/training.dat
      * @param wordsProbability
+     * @param path
+     * @throws Exception
      */
-    public void saveWordsProbability(Map<String, WordsProbability> wordsProbability) throws Exception
+    public void saveWordsProbability(Map<String, WordsProbability> wordsProbability, String path) throws Exception
     {
-        FileOutputStream file = new FileOutputStream("tokens/training.dat");
+        FileOutputStream file = new FileOutputStream(path);
         ObjectOutputStream os = new ObjectOutputStream(file);
         for(Map.Entry<String,WordsProbability> actualWord: wordsProbability.entrySet())
         {
@@ -134,7 +130,7 @@ public class FileManager
     /**
      * Checks if a file exists in a directory
      * @param path
-     * @return
+     * @return true if the file exist, otherwise false.
      */
     public boolean fileExists(String path)
     {
